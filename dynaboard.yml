@@ -1,7 +1,7 @@
 runtimeVersion: 0.2.14
+name: Data Table
+description: 'An example data table filled with data fetched via the http resource'
 type: com.dynaboard/project
-name: Example Template
-description: Optional description of your template
 nodes:
   ROOT_NODE:
     id: ROOT_NODE
@@ -11,11 +11,162 @@ nodes:
     parentSlot: ROOT_NODE
     slots:
       pages:
-        - nodeID: bb071577-c4ea-4614-98e6-9ad31c233cbe
+        - nodeID: 7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71
           orderKey: a0
-  bb071577-c4ea-4614-98e6-9ad31c233cbe:
-    id: bb071577-c4ea-4614-98e6-9ad31c233cbe
+      resources:
+        - nodeID: 37976c4c-068a-47f4-a607-3d0cbf983b72
+          orderKey: a4
+  2f364bbe-62c2-473f-972e-334ddb2b4c35:
+    id: 2f364bbe-62c2-473f-972e-334ddb2b4c35
+    type: FUNCTION
+    name: getRandomData
+    parentNodeID: 7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71
+    parentSlot: functions
+    properties:
+      action:
+        targetNode:
+          ref: 37976c4c-068a-47f4-a607-3d0cbf983b72
+        actionType: PERFORM_REQUEST
+        path: /api/finance?size=25
+        method: GET
+        headers: []
+      runOnPageLoad: '{{true}}'
+      onSuccess: ''
+      onFailure: ''
+  37976c4c-068a-47f4-a607-3d0cbf983b72:
+    id: 37976c4c-068a-47f4-a607-3d0cbf983b72
+    type: RESOURCE/HTTP
+    name: randomDataEndpoint
+    parentNodeID: ROOT_NODE
+    parentSlot: resources
+    properties:
+      baseURL: https://random.dynaboard.dev
+      method: GET
+      headers: []
+      bodyType: application/json
+  7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71:
+    id: 7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71
     type: PAGE
     name: index
     parentNodeID: ROOT_NODE
     parentSlot: pages
+    slots:
+      functions:
+        - nodeID: 2f364bbe-62c2-473f-972e-334ddb2b4c35
+          orderKey: a1
+      canvas:
+        - nodeID: 32b01468-9b67-45d5-83cb-cc3f47f9e966
+          orderKey: a0
+        - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
+          orderKey: a1
+    properties:
+      minHeight: 1136px
+      padding: 16px
+      spacing: 16px
+      gridRowHeight: 16px
+  32b01468-9b67-45d5-83cb-cc3f47f9e966:
+    id: 32b01468-9b67-45d5-83cb-cc3f47f9e966
+    type: DATA_TABLE
+    name: dataTable
+    parentNodeID: 7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71
+    parentSlot: canvas
+    properties:
+      top: '6'
+      width: '12'
+      height: '61'
+      widthMode: FIXED
+      heightMode: FIXED
+      data: '{{getRandomData.data?.data ?? []}}'
+      columns:
+        - header: accountName
+          accessor: accountName
+          id: 6fc95e17-de2a-440b-9511-643623139b6d
+          width: '0'
+          minWidth: '25'
+          renderAs: default
+          dateTimeFormat: ''
+          widthUnit: '%'
+          minWidthUnit: '%'
+          isVisible: true
+          allowSortBy: true
+        - header: currencyCode
+          accessor: currencyCode
+          id: c8caab31-080c-42ce-9166-de455e11de5a
+          width: '0'
+          minWidth: '15'
+          renderAs: default
+          dateTimeFormat: ''
+          widthUnit: '%'
+          minWidthUnit: '%'
+          isVisible: true
+          allowSortBy: true
+        - header: currencySymbol
+          accessor: currencySymbol
+          id: cc15c472-96e3-4c3d-b150-ecfadf11f40a
+          width: 0
+          minWidth: 15
+          renderAs: default
+          dateTimeFormat: ''
+          widthUnit: '%'
+          minWidthUnit: '%'
+          isVisible: true
+          allowSortBy: true
+        - header: accountID
+          accessor: accountID
+          id: 1fa9864d-9663-4581-952d-64f9953fad8a
+          width: '0'
+          minWidth: '15'
+          renderAs: default
+          dateTimeFormat: ''
+          widthUnit: '%'
+          minWidthUnit: '%'
+          isVisible: true
+          allowSortBy: true
+        - header: accountTotal
+          accessor: accountTotal
+          id: b5fc034d-b471-4fa5-8d2b-b4b39d37b3b4
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: false
+          allowSortBy: true
+          renderAs: default
+          dateTimeFormat: ''
+        - header: currencyName
+          accessor: currencyName
+          id: f7af481f-fa91-4d0d-9dc5-2a6a003e3104
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: false
+          allowSortBy: true
+          renderAs: default
+          dateTimeFormat: ''
+      allowDownload: '{{true}}'
+      downloadFormat: JSON
+      flatten: '{{true}}'
+      selectedRowIndex: '{{ 0 }}'
+      onSelectRow: ''
+      onDeselectRow: ''
+      autoselectFirstRow: '{{true}}'
+      autoColumns: '{{false}}'
+  ce6b3326-5554-4174-a764-00408bc1be30:
+    id: ce6b3326-5554-4174-a764-00408bc1be30
+    type: TEXT
+    name: title
+    parentNodeID: 7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71
+    parentSlot: canvas
+    properties:
+      overflow: auto
+      top: '3'
+      width: '12'
+      height: '3'
+      widthMode: FIXED
+      heightMode: FIXED
+      value: Random Data
+      fontSize: 3xl
+      textAlign: center
+      verticalAlign: center
+      fontWeight: bold
