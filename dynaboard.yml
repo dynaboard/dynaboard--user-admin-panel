@@ -1,4 +1,4 @@
-runtimeVersion: 0.3.0
+runtimeVersion: 0.3.4
 name: Data Table
 description: An example data table filled with data fetched via the http resource
 type: com.dynaboard/project
@@ -13,6 +13,10 @@ nodes:
       resources:
         - nodeID: 37976c4c-068a-47f4-a607-3d0cbf983b72
           orderKey: a4
+        - nodeID: 6f7f2240-d34c-4a18-97e5-e19487a2e00a
+          orderKey: a5
+        - nodeID: cae67f4f-0513-4459-b608-f5c27091eaac
+          orderKey: a6
   2f364bbe-62c2-473f-972e-334ddb2b4c35:
     type: FUNCTION
     name: getRandomData
@@ -33,77 +37,117 @@ nodes:
     properties:
       top: '6'
       width: '12'
-      height: '61'
+      height: '60'
       widthMode: FIXED
       heightMode: FIXED
-      data: '{{getRandomData.data?.data ?? []}}'
+      data: '{{getNormalizedData.data}}'
       columns:
-        - header: accountName
+        - header: Account ID
+          accessor: accountID
+          id: 1fa9864d-9663-4581-952d-64f9953fad8a
+          width: 11
+          minWidth: 10
+          renderAs: default
+          dateTimeFormat: ''
+          widthUnit: '%'
+          minWidthUnit: '%'
+          isVisible: 'true'
+          allowSortBy: 'true'
+          buttonText: Button
+          onButtonClick: null
+        - header: Account Name
           accessor: accountName
           id: 6fc95e17-de2a-440b-9511-643623139b6d
-          width: '0'
-          minWidth: '25'
+          width: 0
+          minWidth: 25
           renderAs: default
           dateTimeFormat: ''
           widthUnit: '%'
           minWidthUnit: '%'
-          isVisible: true
-          allowSortBy: true
-        - header: currencyCode
-          accessor: currencyCode
-          id: c8caab31-080c-42ce-9166-de455e11de5a
-          width: '0'
-          minWidth: '15'
-          renderAs: default
-          dateTimeFormat: ''
-          widthUnit: '%'
-          minWidthUnit: '%'
-          isVisible: true
-          allowSortBy: true
-        - header: currencySymbol
-          accessor: currencySymbol
-          id: cc15c472-96e3-4c3d-b150-ecfadf11f40a
+          isVisible: 'true'
+          allowSortBy: 'true'
+          buttonText: Button
+          onButtonClick: null
+        - header: Total
+          accessor: accountTotal
+          id: b5fc034d-b471-4fa5-8d2b-b4b39d37b3b4
           width: 0
           minWidth: 15
           renderAs: default
           dateTimeFormat: ''
           widthUnit: '%'
           minWidthUnit: '%'
-          isVisible: true
-          allowSortBy: true
-        - header: accountID
-          accessor: accountID
-          id: 1fa9864d-9663-4581-952d-64f9953fad8a
-          width: '0'
-          minWidth: '15'
+          isVisible: 'true'
+          allowSortBy: 'true'
+          buttonText: Button
+          onButtonClick: null
+        - header: Currency
+          accessor: currencyCode
+          id: c8caab31-080c-42ce-9166-de455e11de5a
+          width: 9
+          minWidth: 8
           renderAs: default
           dateTimeFormat: ''
           widthUnit: '%'
           minWidthUnit: '%'
-          isVisible: true
-          allowSortBy: true
-        - header: accountTotal
-          accessor: accountTotal
-          id: b5fc034d-b471-4fa5-8d2b-b4b39d37b3b4
-          width: auto
+          isVisible: 'true'
+          allowSortBy: 'true'
+          buttonText: Button
+          onButtonClick: null
+        - header: Symbol
+          accessor: currencySymbol
+          id: cc15c472-96e3-4c3d-b150-ecfadf11f40a
+          width: 10
+          minWidth: 10
+          renderAs: default
+          dateTimeFormat: ''
           widthUnit: '%'
           minWidthUnit: '%'
+          isVisible: 'true'
+          allowSortBy: 'true'
+          buttonText: Button
+          onButtonClick: null
+        - header: High-value
+          accessor: over500
+          id: 06a2d3bd-1426-4457-beb2-901f6ea0b494
+          width: 0
+          minWidth: 7
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+          widthUnit: '%'
+          minWidthUnit: '%'
+          isVisible: 'true'
+          allowSortBy: 'true'
+          buttonText: Button
+          onButtonClick: null
+        - header: Actions
+          accessor: ''
+          id: fc7c6092-3163-45b9-b3c8-02dfb09d91fd
+          width: 0
           minWidth: 15
-          isVisible: false
-          allowSortBy: true
-          renderAs: default
-          dateTimeFormat: ''
+          renderAs: button
+          dateTimeFormat: MMMM dd, y 'at' ttt
+          widthUnit: '%'
+          minWidthUnit: '%'
+          isVisible: 'true'
+          allowSortBy: 'true'
+          buttonText: Copy
+          onButtonClick:
+            function:
+              ref: 8b58ce48-5a8e-4fe2-97d0-fd5c3e480db7
         - header: currencyName
           accessor: currencyName
           id: f7af481f-fa91-4d0d-9dc5-2a6a003e3104
-          width: auto
-          widthUnit: '%'
-          minWidthUnit: '%'
+          width: 0
           minWidth: 15
-          isVisible: false
-          allowSortBy: true
           renderAs: default
           dateTimeFormat: ''
+          widthUnit: '%'
+          minWidthUnit: '%'
+          isVisible: 'false'
+          allowSortBy: 'true'
+          buttonText: Button
+          onButtonClick: null
       allowDownload: '{{true}}'
       downloadFormat: JSON
       flatten: '{{true}}'
@@ -111,15 +155,39 @@ nodes:
       onSelectRow: ''
       onDeselectRow: ''
       autoselectFirstRow: '{{true}}'
-      autoColumns: '{{false}}'
+      autoColumns: false
   37976c4c-068a-47f4-a607-3d0cbf983b72:
     type: RESOURCE/HTTP
     name: randomDataEndpoint
     properties:
-      baseURL: https://random.dynaboard.dev
       method: GET
-      headers: []
       bodyType: application/json
+      profiles:
+        - environment: ''
+          baseURL: https://random.dynaboard.dev
+          headers: []
+  5816437d-7210-440f-a44b-10f072e9fa1e:
+    type: SWITCH
+    name: ccOnlySwitch
+    properties:
+      top: '4'
+      left: '10'
+      width: '3'
+      height: '2'
+      label: Credit Cards Only
+      labelStyle: left
+      value: false
+  6c25ae0f-2f92-4569-b21d-263bedbd42b5:
+    type: INPUT
+    name: searchInput
+    properties:
+      top: '4'
+      width: '8'
+      height: '2'
+      placeholder: Search for an Account ID or Account Name here...
+  6f7f2240-d34c-4a18-97e5-e19487a2e00a:
+    type: RESOURCE/TYPESCRIPT_CLIENT
+    name: typescriptClient1
   7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71:
     type: PAGE
     name: index
@@ -127,28 +195,86 @@ nodes:
       functions:
         - nodeID: 2f364bbe-62c2-473f-972e-334ddb2b4c35
           orderKey: a1
+        - nodeID: b6edff6b-8a65-4e73-8954-b206a36f5965
+          orderKey: a2
+        - nodeID: 8b58ce48-5a8e-4fe2-97d0-fd5c3e480db7
+          orderKey: a3
       canvas:
+        - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
+          orderKey: Zy
+        - nodeID: 6c25ae0f-2f92-4569-b21d-263bedbd42b5
+          orderKey: Zz
         - nodeID: 32b01468-9b67-45d5-83cb-cc3f47f9e966
           orderKey: a0
-        - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
-          orderKey: a1
+        - nodeID: 5816437d-7210-440f-a44b-10f072e9fa1e
+          orderKey: a2
     properties:
       minHeight: 1136px
       padding: 16px
       spacing: 16px
       gridRowHeight: 16px
+  8b58ce48-5a8e-4fe2-97d0-fd5c3e480db7:
+    type: FUNCTION
+    name: copyToClipboard
+    properties:
+      action:
+        clipboardText: '{{dataTable.selectedRow}}'
+        path: ''
+        target: _self
+        targetNode:
+          ref: cae67f4f-0513-4459-b608-f5c27091eaac
+        actionType: COPY_TO_CLIPBOARD
+  b6edff6b-8a65-4e73-8954-b206a36f5965:
+    type: FUNCTION
+    name: getNormalizedData
+    properties:
+      action:
+        code: |-
+          const randomData = {{ getRandomData.data }}?.data ?? []
+          const search = {{ searchInput.value }}.toLowerCase()
+          const ccOnly = {{ ccOnlySwitch.value }}
+
+          const filteredData = randomData.filter((d) => {
+            if (ccOnly && d.accountName !== "Credit Card Account") {
+              return false
+            }
+
+            if (!search) {
+              return true
+            }
+
+            return (
+              d.accountName.toLowerCase().indexOf(search) !== -1 ||
+              d.accountID.toLowerCase().indexOf(search) !== -1
+            )
+          })
+
+          const enrichedData = filteredData.map(d => {
+            return {
+              ...d,
+              over500: Number(d.accountTotal) > 500,
+            }
+          })
+
+          const sortedData = _.sortBy(enrichedData, (d) => d.accountID)
+
+          return sortedData
+        targetNode:
+          ref: 6f7f2240-d34c-4a18-97e5-e19487a2e00a
+        actionType: CALL_CLIENT_FUNCTION
+      callingSemantics: REACTIVE
+  cae67f4f-0513-4459-b608-f5c27091eaac:
+    type: RESOURCE/BROWSER
+    name: browser1
   ce6b3326-5554-4174-a764-00408bc1be30:
     type: TEXT
     name: title
     properties:
       overflow: auto
-      top: '3'
       width: '12'
       height: '3'
       widthMode: FIXED
       heightMode: FIXED
-      value: Random Data
+      value: Customer Accounts
       fontSize: 3xl
-      textAlign: center
-      verticalAlign: center
       fontWeight: bold
