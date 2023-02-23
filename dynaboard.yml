@@ -1,5 +1,5 @@
 runtimeVersion: 0.3.5
-name: Data Table
+name: Data Table (copy)
 description: >-
   An example data table app filled with data fetched via SQL and REST data
   sources.
@@ -151,6 +151,15 @@ nodes:
           ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
         actionType: PERFORM_QUERY
       callingSemantics: REACTIVE
+  146f2c33-fc7c-49af-8ea3-45a6018086cb:
+    type: BUTTON
+    name: button1
+    properties:
+      top: '6'
+      left: '11'
+      width: '2'
+      height: '2'
+      text: Refresh
   1aeeba95-af76-495c-8fa9-fb43bfd7da23:
     type: DATA_TABLE
     name: dataTable
@@ -400,7 +409,7 @@ nodes:
       type: secret
       isRequired: true
       description: >-
-        Configure this secret to connect to the demo PostgreSQL database using
+        Configure this secret to connect to the demo PostgreSQL database. Use
         the password `dynaboardrules` (no quotes).
   6f7f2240-d34c-4a18-97e5-e19487a2e00a:
     type: RESOURCE/TYPESCRIPT_CLIENT
@@ -452,6 +461,8 @@ nodes:
           orderKey: a4
         - nodeID: 1412782e-e410-44ea-8a5e-25d4a283ac2b
           orderKey: a0
+        - nodeID: d4fffdc0-3ba0-4bfd-bbae-af4842256b96
+          orderKey: a5
       canvas:
         - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
           orderKey: Zu
@@ -463,6 +474,8 @@ nodes:
           orderKey: Zv
         - nodeID: e849b2a7-4d1a-46ca-9226-e63180974cc2
           orderKey: Zs
+        - nodeID: 146f2c33-fc7c-49af-8ea3-45a6018086cb
+          orderKey: Zr
     properties:
       minHeight: 1136px
       padding: 16px
@@ -676,6 +689,34 @@ nodes:
           useSSL: '{{true}}'
           sslMode: required
           environment: ''
+  d4fffdc0-3ba0-4bfd-bbae-af4842256b96:
+    type: FUNCTION
+    name: refreshOnConfigChange
+    properties:
+      action:
+        code: >-
+          // This function runs automatically when the configuration variable
+          PG_PASSWORD changes as you configure this template. It in turn
+          triggers a refresh of the SQL data.
+
+
+          // listens on PG_PASSWORD
+
+          {{PG_PASSWORD.value}}
+
+
+          // triggers refresh
+
+          await getSQLDataCount()
+
+          await getSQLDataRows()
+        targetNode:
+          ref: 6f7f2240-d34c-4a18-97e5-e19487a2e00a
+        actionType: CALL_CLIENT_FUNCTION
+      callingSemantics: REACTIVE
+      onSuccess:
+        function:
+          ref: 1412782e-e410-44ea-8a5e-25d4a283ac2b
   d777f0fc-dc94-4711-83a2-dd730d1e35b8:
     type: TEXT
     name: userText
