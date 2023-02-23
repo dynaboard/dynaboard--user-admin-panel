@@ -659,7 +659,7 @@ nodes:
     properties:
       isVisible: '{{!sqlDataTable.selectedRow}}'
       width: '12'
-      height: '16'
+      height: '13'
       value: |-
         Select a user
         to view details.
