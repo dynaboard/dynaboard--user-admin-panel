@@ -400,7 +400,7 @@ nodes:
       type: secret
       isRequired: true
       description: >-
-        Configure this secret to connect to the demo PostgreSQL database using
+        Configure this secret to connect to the demo PostgreSQL database. Use
         the password `dynaboardrules` (no quotes).
   6f7f2240-d34c-4a18-97e5-e19487a2e00a:
     type: RESOURCE/TYPESCRIPT_CLIENT
@@ -452,6 +452,8 @@ nodes:
           orderKey: a4
         - nodeID: 1412782e-e410-44ea-8a5e-25d4a283ac2b
           orderKey: a0
+        - nodeID: 855f92f6-17f0-435a-9f81-ac3a7da5de95
+          orderKey: a5
       canvas:
         - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
           orderKey: Zu
@@ -499,6 +501,30 @@ nodes:
         actionType: PERFORM_QUERY
       callingSemantics: REACTIVE
       runOnPageLoad: true
+  855f92f6-17f0-435a-9f81-ac3a7da5de95:
+    type: FUNCTION
+    name: refreshOnConfigChange
+    properties:
+      action:
+        code: >-
+          // This function runs automatically when the configuration variable
+          PG_PASSWORD changes as you configure this template. It in turn
+          triggers a refresh of the SQL data.
+
+
+          // listens on PG_PASSWORD
+
+          {{PG_PASSWORD.value}}
+
+
+          // triggers refresh
+
+          await getSQLDataCount()
+
+          await getSQLDataRows()
+        targetNode:
+          ref: 6f7f2240-d34c-4a18-97e5-e19487a2e00a
+        actionType: CALL_CLIENT_FUNCTION
   8a072561-f061-4ccd-996e-f3d04cd7ba75:
     type: CONTAINER
     name: detailViewContainer
