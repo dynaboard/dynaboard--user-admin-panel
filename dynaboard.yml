@@ -1,6 +1,8 @@
 runtimeVersion: 0.3.5
 name: Data Table
-description: An example data table filled with data fetched via the http resource
+description: >-
+  An example data table app filled with data fetched via SQL and REST data
+  sources.
 type: com.dynaboard/project
 nodes:
   ROOT_NODE:
