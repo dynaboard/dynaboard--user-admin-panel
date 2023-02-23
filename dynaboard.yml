@@ -1,6 +1,8 @@
-runtimeVersion: 0.3.4
+runtimeVersion: 0.3.5
 name: Data Table
-description: An example data table filled with data fetched via the http resource
+description: >-
+  An example data table app filled with data fetched via SQL and REST data
+  sources.
 type: com.dynaboard/project
 nodes:
   ROOT_NODE:
@@ -9,38 +11,156 @@ nodes:
     slots:
       pages:
         - nodeID: 7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71
+          orderKey: Zy
+        - nodeID: 900e27e4-3317-432b-b5ea-18c0c69c0a80
+          orderKey: Zz
+        - nodeID: 99314925-ad48-46d6-9b5d-fd8db6c6d44e
           orderKey: a0
       resources:
         - nodeID: 37976c4c-068a-47f4-a607-3d0cbf983b72
           orderKey: a4
         - nodeID: 6f7f2240-d34c-4a18-97e5-e19487a2e00a
-          orderKey: a5
+          orderKey: a3
         - nodeID: cae67f4f-0513-4459-b608-f5c27091eaac
-          orderKey: a6
-  2f364bbe-62c2-473f-972e-334ddb2b4c35:
-    type: FUNCTION
-    name: getRandomData
-    properties:
-      action:
-        targetNode:
-          ref: 37976c4c-068a-47f4-a607-3d0cbf983b72
-        actionType: PERFORM_REQUEST
-        path: /api/finance?size=25
-        method: GET
-        headers: []
-      runOnPageLoad: '{{true}}'
-      onSuccess: ''
-      onFailure: ''
-  32b01468-9b67-45d5-83cb-cc3f47f9e966:
+          orderKey: a3V
+        - nodeID: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
+          orderKey: a6V
+      components:
+        - nodeID: fe14b182-bf58-458a-b8c0-b094e5104311
+          orderKey: a0
+        - nodeID: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
+          orderKey: a1
+      config:
+        - nodeID: 6f0f802f-0ebd-4e8c-b42f-657ea4a9e0dc
+          orderKey: a1
+  0fae78ed-3fe1-46b6-833d-3cfdc4bf44dd:
     type: DATA_TABLE
     name: dataTable
     properties:
-      top: '6'
+      isVisible: true
+      top: '5'
       width: '12'
-      height: '60'
+      height: '12'
+      data: '{{ getSQLOrders.data }}'
+      autoColumns: true
+      columns:
+        - header: id
+          accessor: id
+          id: 05ba899f-516a-444b-80c8-10c0e80259f8
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: user_id
+          accessor: user_id
+          id: 882f4019-8ed3-4406-9197-5d2b912ce60a
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: vendor_id
+          accessor: vendor_id
+          id: d550d22f-938f-4a4f-a45e-e89a79f11d2a
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: payment_method_id
+          accessor: payment_method_id
+          id: 2b85cc55-aa3d-4ce6-ae3c-0005f74cc1f7
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: order_total
+          accessor: order_total
+          id: b3d69034-fd3e-4cdb-bc42-4ad40d4318e3
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: status
+          accessor: status
+          id: 3533978d-208f-4739-a266-b15b53debc08
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: created_at
+          accessor: created_at
+          id: 9c1d760d-3a7b-4fb4-89e5-b75d85aa4522
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: updated_at
+          accessor: updated_at
+          id: d96288e8-50b3-458a-8eea-9b00dd8f7289
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+      autoselectFirstRow: true
+  1412782e-e410-44ea-8a5e-25d4a283ac2b:
+    type: FUNCTION
+    name: getSQLDataRows
+    properties:
+      action:
+        query: |-
+          SELECT
+            *
+          FROM
+            users
+          WHERE
+            {{ !sqlSearchInput.value }}
+            OR name ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+            OR email ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+        targetNode:
+          ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
+        actionType: PERFORM_QUERY
+      callingSemantics: REACTIVE
+  1aeeba95-af76-495c-8fa9-fb43bfd7da23:
+    type: DATA_TABLE
+    name: dataTable
+    properties:
+      top: '11'
+      width: '12'
+      height: '41'
       widthMode: FIXED
       heightMode: FIXED
-      data: '{{getNormalizedData.data}}'
+      data: '{{ getNormalizedData.data }}'
       columns:
         - header: Account ID
           accessor: accountID
@@ -134,7 +254,7 @@ nodes:
           buttonText: Copy
           onButtonClick:
             function:
-              ref: 8b58ce48-5a8e-4fe2-97d0-fd5c3e480db7
+              ref: f1f385a4-3853-45e3-bc51-58ba7220c27a
         - header: currencyName
           accessor: currencyName
           id: f7af481f-fa91-4d0d-9dc5-2a6a003e3104
@@ -156,6 +276,28 @@ nodes:
       onDeselectRow: ''
       autoselectFirstRow: '{{true}}'
       autoColumns: false
+  1e2ad524-7b53-4f31-8b05-675853620f89:
+    type: COMPONENT/f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
+    name: notice1
+    componentRef: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
+    properties:
+      left: '7'
+      width: '6'
+      height: '5'
+      $props: |-
+        {
+          "text": "This page shows how to wire up a REST API to a data table and perform client-side filters."
+        }
+  23667ad4-e8ea-44a7-9e65-a8ded3733981:
+    type: TEXT
+    name: text1
+    properties:
+      width: 40px
+      height: fill
+      value: 💡
+      fontSize: 3xl
+      lineHeight: 100%
+      textAlign: center
   37976c4c-068a-47f4-a607-3d0cbf983b72:
     type: RESOURCE/HTTP
     name: randomDataEndpoint
@@ -166,65 +308,31 @@ nodes:
         - environment: ''
           baseURL: https://random.dynaboard.dev
           headers: []
-  5816437d-7210-440f-a44b-10f072e9fa1e:
+  54787690-0286-4edd-813a-6066a08de86a:
+    type: COMPONENT/f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
+    name: notice1
+    componentRef: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
+    properties:
+      top: '14'
+      width: '12'
+      height: '3'
+      $props: |-
+        {
+          text: "The above detail view is a custom component, double click to edit.",
+        }
+  57e18596-bbb7-4443-acf0-d07cd636b087:
     type: SWITCH
     name: ccOnlySwitch
     properties:
-      top: '4'
-      left: '10'
-      width: '3'
-      height: '2'
+      top: '7'
+      left: '11'
+      width: '2'
+      height: '4'
       label: Credit Cards Only
-      labelStyle: left
+      labelStyle: top
       value: false
-  6c25ae0f-2f92-4569-b21d-263bedbd42b5:
-    type: INPUT
-    name: searchInput
-    properties:
-      top: '4'
-      width: '8'
-      height: '2'
-      placeholder: Search for an Account ID or Account Name here...
-  6f7f2240-d34c-4a18-97e5-e19487a2e00a:
-    type: RESOURCE/TYPESCRIPT_CLIENT
-    name: typescriptClient1
-  7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71:
-    type: PAGE
-    name: index
-    slots:
-      functions:
-        - nodeID: 2f364bbe-62c2-473f-972e-334ddb2b4c35
-          orderKey: a1
-        - nodeID: b6edff6b-8a65-4e73-8954-b206a36f5965
-          orderKey: a2
-        - nodeID: 8b58ce48-5a8e-4fe2-97d0-fd5c3e480db7
-          orderKey: a3
-      canvas:
-        - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
-          orderKey: Zy
-        - nodeID: 6c25ae0f-2f92-4569-b21d-263bedbd42b5
-          orderKey: Zz
-        - nodeID: 32b01468-9b67-45d5-83cb-cc3f47f9e966
-          orderKey: a0
-        - nodeID: 5816437d-7210-440f-a44b-10f072e9fa1e
-          orderKey: a2
-    properties:
-      minHeight: 1136px
-      padding: 16px
-      spacing: 16px
-      gridRowHeight: 16px
-  8b58ce48-5a8e-4fe2-97d0-fd5c3e480db7:
-    type: FUNCTION
-    name: copyToClipboard
-    properties:
-      action:
-        clipboardText: '{{dataTable.selectedRow}}'
-        path: ''
-        target: _self
-        targetNode:
-          ref: cae67f4f-0513-4459-b608-f5c27091eaac
-        actionType: COPY_TO_CLIPBOARD
-  b6edff6b-8a65-4e73-8954-b206a36f5965:
+      labelWidth: 80%
+  5ca770d5-dbe9-44e6-8c29-740589c0c85f:
     type: FUNCTION
     name: getNormalizedData
     properties:
@@ -263,18 +371,448 @@ nodes:
           ref: 6f7f2240-d34c-4a18-97e5-e19487a2e00a
         actionType: CALL_CLIENT_FUNCTION
       callingSemantics: REACTIVE
-  cae67f4f-0513-4459-b608-f5c27091eaac:
-    type: RESOURCE/BROWSER
-    name: browser1
-  ce6b3326-5554-4174-a764-00408bc1be30:
+  68c6de3c-56c6-40bc-a8d4-e9ecb364cff9:
+    type: TEXT
+    name: text1
+    properties:
+      top: '6'
+      width: '12'
+      height: '3'
+      value: 'Browse to an example:'
+      fontWeight: bold
+  6dd2b27f-a396-4c8d-ba3e-5878a4351f0c:
+    type: INPUT
+    name: sqlSearchInput
+    properties:
+      top: '7'
+      width: '12'
+      height: '4'
+      label: Search
+      labelStyle: top
+      placeholder: First Last or email@domain.com
+      accessoryLeft: icon
+      accessoryLeftIcon: MagnifyingGlassIcon
+  6f0f802f-0ebd-4e8c-b42f-657ea4a9e0dc:
+    type: CONFIG
+    name: PG_PASSWORD
+    properties:
+      value: ''
+      type: secret
+      isRequired: true
+      description: >-
+        Configure this secret to connect to the demo PostgreSQL database using
+        the password `dynaboardrules` (no quotes).
+  6f7f2240-d34c-4a18-97e5-e19487a2e00a:
+    type: RESOURCE/TYPESCRIPT_CLIENT
+    name: typescriptClient
+  727485fc-83be-48c5-a38c-9ea08b99b48f:
+    type: FUNCTION
+    name: getSQLDataCount
+    properties:
+      action:
+        query: |-
+          SELECT
+            COUNT(*)
+          FROM
+            users
+          WHERE
+            {{ !sqlSearchInput.value }}
+            OR name ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+            OR email ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+        targetNode:
+          ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
+        actionType: PERFORM_QUERY
+      callingSemantics: REACTIVE
+  7a19c6c0-0417-4940-bbc6-68ec0d65ce54:
+    type: DATA_TABLE
+    name: sqlDataTable
+    properties:
+      top: '11'
+      width: '12'
+      height: '26'
+      data: '{{ getSQLDataRows.data }}'
+      autoselectFirstRow: true
+      paginationEnabled: true
+      pageSize: 10
+      totalRowCount: '{{getSQLDataCount.data?.[0].count ?? undefined}}'
+      onSelectRow:
+        function:
+          ref: 4727b12c-7069-4d5a-b464-96c7933157c0
+      onRefresh:
+        function:
+          ref: e9c5e47d-c8ce-409b-ae23-10b71516380b
+  7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71:
+    type: PAGE
+    name: sqlDataSource
+    slots:
+      functions:
+        - nodeID: 727485fc-83be-48c5-a38c-9ea08b99b48f
+          orderKey: a0V
+        - nodeID: 4727b12c-7069-4d5a-b464-96c7933157c0
+          orderKey: a4
+        - nodeID: 1412782e-e410-44ea-8a5e-25d4a283ac2b
+          orderKey: a0
+      canvas:
+        - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
+          orderKey: Zu
+        - nodeID: 7a19c6c0-0417-4940-bbc6-68ec0d65ce54
+          orderKey: Zx
+        - nodeID: 6dd2b27f-a396-4c8d-ba3e-5878a4351f0c
+          orderKey: Zy
+        - nodeID: 8a072561-f061-4ccd-996e-f3d04cd7ba75
+          orderKey: Zv
+        - nodeID: e849b2a7-4d1a-46ca-9226-e63180974cc2
+          orderKey: Zs
+    properties:
+      minHeight: 1136px
+      padding: 16px
+      spacing: 16px
+      gridRowHeight: 16px
+  7c1c6e37-aebb-4028-8474-23cdba65a54a:
+    type: TEXT
+    name: text3
+    properties:
+      top: '11'
+      width: '12'
+      height: '2'
+      value: 🌐 REST Data Source
+      renderMode: link
+      href: /restDataSource
+      showExternalIndicator: false
+      textDecorationLine: underline
+  7c64b908-4d0c-4c7d-a1d7-cab53b47e875:
+    type: FUNCTION
+    name: getSQLOrders
+    properties:
+      action:
+        query: |-
+          SELECT
+            id,
+            status,
+            order_total
+          FROM
+            orders
+          WHERE
+            user_id = {{ $props.row.id }}
+        targetNode:
+          ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
+        actionType: PERFORM_QUERY
+      callingSemantics: REACTIVE
+      runOnPageLoad: true
+  8a072561-f061-4ccd-996e-f3d04cd7ba75:
+    type: CONTAINER
+    name: detailViewContainer
+    slots:
+      canvas:
+        - nodeID: ea85635e-c0f4-4f3d-b5bd-e9395ff8c2e1
+          orderKey: a0
+        - nodeID: ca83c45b-be82-4da0-a23b-5f499ffd5f9b
+          orderKey: a1
+        - nodeID: 54787690-0286-4edd-813a-6066a08de86a
+          orderKey: Zy
+    properties:
+      top: '37'
+      width: '12'
+      height: '32'
+      styles: |-
+        element.styles {
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+      backgroundColor: surface.100
+      borderRadius: 6px
+  8b6d065d-3d6a-4bcd-9a54-322a3e8fe831:
+    type: TEXT
+    name: emailText
+    properties:
+      top: '2'
+      width: '12'
+      height: '1'
+      value: '{{$props.row.email}}'
+  8f30b6e6-9972-4379-9215-bceb5c7ff629:
+    type: FUNCTION
+    name: getRandomData
+    properties:
+      action:
+        targetNode:
+          ref: 37976c4c-068a-47f4-a607-3d0cbf983b72
+        actionType: PERFORM_REQUEST
+        path: /api/finance?size=25
+        method: GET
+        headers: []
+      runOnPageLoad: '{{true}}'
+      onSuccess: ''
+      onFailure: ''
+  8fe781e4-05c1-41f5-be91-c1111ca4bcc7:
+    type: TEXT
+    name: text2
+    properties:
+      top: '9'
+      width: '12'
+      height: '2'
+      value: 📊 SQL Data Source
+      renderMode: link
+      href: /sqlDataSource
+      showExternalIndicator: false
+      textDecorationLine: underline
+  900e27e4-3317-432b-b5ea-18c0c69c0a80:
+    type: PAGE
+    name: restDataSource
+    slots:
+      canvas:
+        - nodeID: c8137b42-c56c-423a-9b7f-a785b043549a
+          orderKey: a3
+        - nodeID: eeb3347f-de4d-4781-8a1f-f976ebced42c
+          orderKey: a4
+        - nodeID: 1aeeba95-af76-495c-8fa9-fb43bfd7da23
+          orderKey: a5
+        - nodeID: 57e18596-bbb7-4443-acf0-d07cd636b087
+          orderKey: a6
+        - nodeID: 1e2ad524-7b53-4f31-8b05-675853620f89
+          orderKey: a2
+      functions:
+        - nodeID: 8f30b6e6-9972-4379-9215-bceb5c7ff629
+          orderKey: a2
+        - nodeID: 5ca770d5-dbe9-44e6-8c29-740589c0c85f
+          orderKey: a3
+        - nodeID: f1f385a4-3853-45e3-bc51-58ba7220c27a
+          orderKey: a4
+    properties:
+      minHeight: 1136px
+      padding: 16px
+      spacing: 16px
+      gridRowHeight: 16px
+  964fd0cf-7c23-4b2c-b451-a94b06c89b82:
+    type: TEXT
+    name: text2
+    properties:
+      left: '3'
+      width: fill
+      height: fill
+      value: '{{$props.text}}'
+  99314925-ad48-46d6-9b5d-fd8db6c6d44e:
+    type: PAGE
+    name: index
+    slots:
+      canvas:
+        - nodeID: 68c6de3c-56c6-40bc-a8d4-e9ecb364cff9
+          orderKey: a0
+        - nodeID: 8fe781e4-05c1-41f5-be91-c1111ca4bcc7
+          orderKey: Zz
+        - nodeID: bd2c2dda-f115-420b-bd7f-d5d8b32f174d
+          orderKey: Zy
+        - nodeID: 7c1c6e37-aebb-4028-8474-23cdba65a54a
+          orderKey: ZyV
+  bd2c2dda-f115-420b-bd7f-d5d8b32f174d:
     type: TEXT
     name: title
     properties:
       overflow: auto
-      width: '12'
-      height: '3'
+      width: '6'
+      height: '5'
       widthMode: FIXED
       heightMode: FIXED
       value: Customer Accounts
       fontSize: 3xl
       fontWeight: bold
+  c8137b42-c56c-423a-9b7f-a785b043549a:
+    type: TEXT
+    name: title
+    properties:
+      overflow: auto
+      width: '6'
+      height: '5'
+      widthMode: FIXED
+      heightMode: FIXED
+      value: Customer Accounts (REST)
+      fontSize: 3xl
+      fontWeight: bold
+  ca83c45b-be82-4da0-a23b-5f499ffd5f9b:
+    type: TEXT
+    name: emptyText
+    properties:
+      isVisible: '{{!sqlDataTable.selectedRow}}'
+      width: '12'
+      height: '16'
+      value: |-
+        Select a user
+        to view details.
+      textAlign: center
+      fontWeight: bold
+  cae67f4f-0513-4459-b608-f5c27091eaac:
+    type: RESOURCE/BROWSER
+    name: browser
+  caeceb6e-7698-4d52-bb39-c96d1cf87679:
+    type: TEXT
+    name: ordersTitle
+    properties:
+      top: '4'
+      width: '12'
+      height: '1'
+      value: Orders
+      fontStyle: italic
+  ce6b3326-5554-4174-a764-00408bc1be30:
+    type: TEXT
+    name: title
+    properties:
+      overflow: auto
+      width: '6'
+      height: '5'
+      widthMode: FIXED
+      heightMode: FIXED
+      value: Customer Accounts (SQL)
+      fontSize: 3xl
+      fontWeight: bold
+  d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8:
+    type: RESOURCE/POSTGRES
+    name: postgresReadOnly
+    properties:
+      profiles:
+        - host: 34.69.26.232
+          port: '5432'
+          database: postgres
+          username: readonly
+          password:
+            ref: 6f0f802f-0ebd-4e8c-b42f-657ea4a9e0dc
+          useSSL: '{{true}}'
+          sslMode: required
+          environment: ''
+  d777f0fc-dc94-4711-83a2-dd730d1e35b8:
+    type: TEXT
+    name: userText
+    properties:
+      width: '12'
+      height: '1'
+      value: '{{$props.row.name}}'
+      fontWeight: bold
+  e849b2a7-4d1a-46ca-9226-e63180974cc2:
+    type: COMPONENT/f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
+    name: notice
+    componentRef: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
+    properties:
+      left: '7'
+      width: '6'
+      height: '5'
+      $props: |-
+        {
+          text: "This page shows how to wire up a data table to a search bar and detail view backed by paginated SQL.",
+        }
+  e9c5e47d-c8ce-409b-ae23-10b71516380b:
+    type: FUNCTION
+    name: getSQLDataRows
+    properties:
+      action:
+        query: |-
+          SELECT
+            *
+          FROM
+            users
+          WHERE
+            {{ !sqlSearchInput.value }}
+            OR name ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+            OR email ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+          OFFSET
+            {{ sqlDataTable.paginationOffset }}
+          LIMIT
+            {{ sqlDataTable.pageSize }}
+        targetNode:
+          ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
+        actionType: PERFORM_QUERY
+      callingSemantics: REACTIVE
+  ea85635e-c0f4-4f3d-b5bd-e9395ff8c2e1:
+    type: COMPONENT/fe14b182-bf58-458a-b8c0-b094e5104311
+    name: detailViewInstance
+    componentRef: fe14b182-bf58-458a-b8c0-b094e5104311
+    properties:
+      isVisible: '{{sqlDataTable.selectedRow}}'
+      width: '12'
+      height: '13'
+      $props: |-
+        {
+          row: sqlDataTable.selectedRow
+        }
+  eeb3347f-de4d-4781-8a1f-f976ebced42c:
+    type: INPUT
+    name: searchInput
+    properties:
+      top: '7'
+      width: '9'
+      height: '4'
+      placeholder: Search for an Account ID or Account Name here...
+      label: Search
+      labelStyle: top
+      accessoryLeft: icon
+      accessoryLeftIcon: MagnifyingGlassIcon
+  f0dda8ec-f722-43ee-9c5b-43ffab2b5a75:
+    type: CONTAINER
+    name: container1
+    slots:
+      canvas:
+        - nodeID: 23667ad4-e8ea-44a7-9e65-a8ded3733981
+          orderKey: Zy
+        - nodeID: 964fd0cf-7c23-4b2c-b451-a94b06c89b82
+          orderKey: Zz
+    properties:
+      width: '12'
+      height: '16'
+      layoutStyle: HORIZONTAL_STACK
+      backgroundColor: background.levelOne
+      borderRadius: 4px
+  f1c60bc1-1ac8-41cd-b7e0-0385bafc4464:
+    type: COMPONENT
+    name: notice
+    slots:
+      canvas:
+        - nodeID: f0dda8ec-f722-43ee-9c5b-43ffab2b5a75
+          orderKey: a0
+    properties:
+      height: 80px
+      width: 592px
+      $props: |-
+        {
+          text: "This is a notice!"
+        }
+  f1f385a4-3853-45e3-bc51-58ba7220c27a:
+    type: FUNCTION
+    name: copyToClipboard
+    properties:
+      action:
+        clipboardText: '{{dataTable.selectedRow}}'
+        path: ''
+        target: _self
+        targetNode:
+          ref: cae67f4f-0513-4459-b608-f5c27091eaac
+        actionType: COPY_TO_CLIPBOARD
+  fe14b182-bf58-458a-b8c0-b094e5104311:
+    type: COMPONENT
+    name: detailView
+    slots:
+      canvas:
+        - nodeID: d777f0fc-dc94-4711-83a2-dd730d1e35b8
+          orderKey: Zw
+        - nodeID: 8b6d065d-3d6a-4bcd-9a54-322a3e8fe831
+          orderKey: Zz
+        - nodeID: caeceb6e-7698-4d52-bb39-c96d1cf87679
+          orderKey: ZzV
+        - nodeID: 0fae78ed-3fe1-46b6-833d-3cfdc4bf44dd
+          orderKey: a0
+      functions:
+        - nodeID: 7c64b908-4d0c-4c7d-a1d7-cab53b47e875
+          orderKey: a0
+    properties:
+      height: 466px
+      width: 714px
+      backgroundColor: dark.surface.200
+      borderRadius: 6px
+      padding: 12px
+      styles: |-
+        element.styles {
+          border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+      $props: |-
+        {
+          row: {
+            id: 1,
+            name: "Ada Lovelace",
+            email: "alovelace@example.com",
+          },
+        }
