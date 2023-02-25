@@ -454,6 +454,8 @@ nodes:
           orderKey: a0
         - nodeID: 855f92f6-17f0-435a-9f81-ac3a7da5de95
           orderKey: a5
+        - nodeID: e9c5e47d-c8ce-409b-ae23-10b71516380b
+          orderKey: a6
       canvas:
         - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
           orderKey: Zu
