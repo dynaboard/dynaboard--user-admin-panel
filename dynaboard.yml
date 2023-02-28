@@ -1,4 +1,4 @@
-runtimeVersion: 0.3.5
+runtimeVersion: 0.3.6
 name: Data Table
 description: >-
   An example data table app filled with data fetched via SQL and REST data
@@ -133,6 +133,26 @@ nodes:
           renderAs: default
           dateTimeFormat: MMMM dd, y 'at' ttt
       autoselectFirstRow: true
+  1412782e-e410-44ea-8a5e-25d4a283ac2b:
+    type: FUNCTION
+    name: getSQLDataRows
+    properties:
+      action:
+        query: |-
+          SELECT
+            *
+          FROM
+            users
+          WHERE
+            {{ !sqlSearchInput.value }}
+            OR name ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+            OR email ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+          LIMIT {{sqlDataTable.pageSize}}
+          OFFSET {{sqlDataTable.paginationOffset}}
+        targetNode:
+          ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
+        actionType: PERFORM_QUERY
+      callingSemantics: REACTIVE
   1aeeba95-af76-495c-8fa9-fb43bfd7da23:
     type: DATA_TABLE
     name: dataTable
@@ -300,7 +320,7 @@ nodes:
       height: '3'
       $props: |-
         {
-          text: "The above detail view is a custom component, double click to edit.",
+          text: "The above detail view is a custom component, double click while in edit mode.",
         }
   57e18596-bbb7-4443-acf0-d07cd636b087:
     type: SWITCH
@@ -366,7 +386,7 @@ nodes:
     type: INPUT
     name: sqlSearchInput
     properties:
-      top: '7'
+      top: '11'
       width: '12'
       height: '4'
       label: Search
@@ -409,7 +429,7 @@ nodes:
     type: DATA_TABLE
     name: sqlDataTable
     properties:
-      top: '11'
+      top: '17'
       width: '12'
       height: '26'
       data: getSQLDataRows.data
@@ -417,12 +437,10 @@ nodes:
       paginationEnabled: true
       pageSize: 9
       totalRowCount: '{{getSQLDataCount.data?.[0].count ?? undefined}}'
-      onSelectRow:
-        function:
-          ref: 4727b12c-7069-4d5a-b464-96c7933157c0
+      onSelectRow: null
       onRefresh:
         function:
-          ref: e9c5e47d-c8ce-409b-ae23-10b71516380b
+          ref: 1412782e-e410-44ea-8a5e-25d4a283ac2b
   7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71:
     type: PAGE
     name: sqlDataSource
@@ -430,28 +448,23 @@ nodes:
       functions:
         - nodeID: 727485fc-83be-48c5-a38c-9ea08b99b48f
           orderKey: a0V
-        - nodeID: 4727b12c-7069-4d5a-b464-96c7933157c0
-          orderKey: a4
-        - nodeID: e9c5e47d-c8ce-409b-ae23-10b71516380b
+        - nodeID: 1412782e-e410-44ea-8a5e-25d4a283ac2b
           orderKey: a0
         - nodeID: 855f92f6-17f0-435a-9f81-ac3a7da5de95
           orderKey: a5
       canvas:
-        - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
-          orderKey: Zu
         - nodeID: 7a19c6c0-0417-4940-bbc6-68ec0d65ce54
           orderKey: Zx
         - nodeID: 6dd2b27f-a396-4c8d-ba3e-5878a4351f0c
           orderKey: Zy
         - nodeID: 8a072561-f061-4ccd-996e-f3d04cd7ba75
           orderKey: Zv
-        - nodeID: e849b2a7-4d1a-46ca-9226-e63180974cc2
-          orderKey: Zs
+        - nodeID: c7f13cff-f1a8-4ce1-b1ff-1c94f0aa3b45
+          orderKey: Zr
     properties:
       minHeight: 1136px
       padding: 16px
       spacing: 16px
-      gridRowHeight: 16px
   7c1c6e37-aebb-4028-8474-23cdba65a54a:
     type: TEXT
     name: text3
@@ -520,7 +533,7 @@ nodes:
         - nodeID: 54787690-0286-4edd-813a-6066a08de86a
           orderKey: Zy
     properties:
-      top: '37'
+      top: '44'
       width: '12'
       height: '32'
       styles: |-
@@ -615,7 +628,6 @@ nodes:
     type: TEXT
     name: title
     properties:
-      overflow: auto
       width: '6'
       height: '5'
       widthMode: FIXED
@@ -623,11 +635,31 @@ nodes:
       value: Customer Accounts
       fontSize: 3xl
       fontWeight: bold
+  c7f13cff-f1a8-4ce1-b1ff-1c94f0aa3b45:
+    type: CONTAINER
+    name: headerContainer
+    slots:
+      canvas:
+        - nodeID: e849b2a7-4d1a-46ca-9226-e63180974cc2
+          orderKey: a0
+        - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
+          orderKey: Zz
+    properties:
+      width: '12'
+      height: '5'
+      overflow: visible
+      layoutStyle: >-
+        {{$app.viewportWidth < $breakpoint.Tablet ? 'VERTICAL_STACK' :
+        'HORIZONTAL_STACK'}}
+      padding: '0'
+      spacing: 4px
+      backgroundColor: transparent
+      boxShadow: '0'
+      alignContent: center
   c8137b42-c56c-423a-9b7f-a785b043549a:
     type: TEXT
     name: title
     properties:
-      overflow: auto
       width: '6'
       height: '5'
       widthMode: FIXED
@@ -663,9 +695,8 @@ nodes:
     type: TEXT
     name: title
     properties:
-      overflow: auto
-      width: '6'
-      height: '5'
+      width: fill
+      height: fill
       widthMode: FIXED
       heightMode: FIXED
       value: Customer Accounts (SQL)
@@ -699,34 +730,12 @@ nodes:
     componentRef: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
     properties:
       left: '7'
-      width: '6'
-      height: '5'
+      width: fill
+      height: fill
       $props: |-
         {
           text: "This page shows how to wire up a data table to a search bar and detail view backed by paginated SQL.",
         }
-  e9c5e47d-c8ce-409b-ae23-10b71516380b:
-    type: FUNCTION
-    name: getSQLDataRows
-    properties:
-      action:
-        query: |-
-          SELECT
-            *
-          FROM
-            users
-          WHERE
-            {{ !sqlSearchInput.value }}
-            OR name ILIKE {{ "%" + sqlSearchInput.value + "%" }}
-            OR email ILIKE {{ "%" + sqlSearchInput.value + "%" }}
-          OFFSET
-            {{ sqlDataTable.paginationOffset }}
-          LIMIT
-            {{ sqlDataTable.pageSize }}
-        targetNode:
-          ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
-        actionType: PERFORM_QUERY
-      callingSemantics: REACTIVE
   ea85635e-c0f4-4f3d-b5bd-e9395ff8c2e1:
     type: COMPONENT/fe14b182-bf58-458a-b8c0-b094e5104311
     name: detailViewInstance
@@ -775,6 +784,7 @@ nodes:
     properties:
       height: 80px
       width: 592px
+      overflow: visible
       $props: |-
         {
           text: "This is a notice!"
@@ -809,7 +819,7 @@ nodes:
     properties:
       height: 466px
       width: 714px
-      backgroundColor: dark.surface.200
+      backgroundColor: background.levelOne
       borderRadius: 6px
       padding: 12px
       styles: |-
