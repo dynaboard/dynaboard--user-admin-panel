@@ -399,6 +399,7 @@ nodes:
     name: PG_PASSWORD
     properties:
       value: ''
+      fallbackValue: 'dynaboardrules'
       type: secret
       isRequired: true
       description: >-
