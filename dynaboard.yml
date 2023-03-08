@@ -417,9 +417,9 @@ nodes:
       value: ''
       type: secret
       isRequired: true
+      fallbackValue: dynaboardrules
       description: >-
-        Configure this secret to connect to the demo PostgreSQL database. Use
-        the password `dynaboardrules` (no quotes).
+        Configure this secret to connect to the demo PostgreSQL database.
   6f7f2240-d34c-4a18-97e5-e19487a2e00a:
     type: RESOURCE/TYPESCRIPT_CLIENT
     name: typescriptClient
