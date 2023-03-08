@@ -293,6 +293,10 @@ nodes:
       width: '6'
       height: '5'
       $props:
+        element: |-
+          {
+            "text": "This page shows how to wire up a REST API to a data table and perform client-side filters."
+          }
         text: >-
           This page shows how to wire up a REST API to a data table and perform
           client-side filters.
@@ -329,6 +333,10 @@ nodes:
       width: '12'
       height: '3'
       $props:
+        element: |-
+          {
+            text: "The above detail view is a custom component, double click while in edit mode.",
+          }
         text: >-
           The above detail view is a custom component, double click while in
           edit mode.
@@ -414,12 +422,11 @@ nodes:
     type: CONFIG
     name: PG_PASSWORD
     properties:
+      fallbackValue: dynaboardrules
       value: ''
       type: secret
       isRequired: true
-      description: >-
-        Configure this secret to connect to the demo PostgreSQL database. Use
-        the password `dynaboardrules` (no quotes).
+      description: Configure this secret to connect to the demo PostgreSQL database.
   6f7f2240-d34c-4a18-97e5-e19487a2e00a:
     type: RESOURCE/TYPESCRIPT_CLIENT
     name: typescriptClient
@@ -673,6 +680,14 @@ nodes:
           orderKey: ZyV
     properties:
       includeInSitemap: '{{true}}'
+      headerProps:
+        element: ''
+      leftSidebarProps:
+        element: ''
+      rightSidebarProps:
+        element: ''
+      footerProps:
+        element: ''
       leftSidebarOpen: '{{true}}'
       rightSidebarOpen: '{{true}}'
   bd2c2dda-f115-420b-bd7f-d5d8b32f174d:
@@ -795,6 +810,10 @@ nodes:
       width: fill
       height: fill
       $props:
+        element: |-
+          {
+            text: "This page shows how to wire up a data table to a search bar and detail view backed by paginated SQL.",
+          }
         text: >-
           This page shows how to wire up a data table to a search bar and detail
           view backed by paginated SQL.
@@ -807,6 +826,10 @@ nodes:
       width: '12'
       height: '13'
       $props:
+        element: |-
+          {
+            row: sqlDataTable.selectedRow
+          }
         row: sqlDataTable.selectedRow
   eeb3347f-de4d-4781-8a1f-f976ebced42c:
     type: INPUT
