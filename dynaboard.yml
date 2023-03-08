@@ -1,4 +1,4 @@
-runtimeVersion: 0.3.6
+runtimeVersion: 0.4.0
 name: Data Table
 description: >-
   An example data table app filled with data fetched via SQL and REST data
@@ -37,12 +37,11 @@ nodes:
     type: DATA_TABLE
     name: dataTable
     properties:
-      isVisible: true
+      isEnabled: '{{true}}'
       top: '5'
       width: '12'
       height: '12'
       data: '{{ getSQLOrders.data }}'
-      autoColumns: true
       columns:
         - header: id
           accessor: id
@@ -132,11 +131,16 @@ nodes:
           allowSortBy: '{{true}}'
           renderAs: default
           dateTimeFormat: MMMM dd, y 'at' ttt
+      flatten: '{{false}}'
+      allowExport: '{{false}}'
       autoselectFirstRow: true
+      paginationEnabled: '{{false}}'
   1412782e-e410-44ea-8a5e-25d4a283ac2b:
     type: FUNCTION
     name: getSQLDataRows
     properties:
+      isEnabled: '{{true}}'
+      loading: '{{false}}'
       action:
         query: |-
           SELECT
@@ -153,6 +157,7 @@ nodes:
           ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
         actionType: PERFORM_QUERY
       callingSemantics: REACTIVE
+      runOnPageLoad: '{{false}}'
   1aeeba95-af76-495c-8fa9-fb43bfd7da23:
     type: DATA_TABLE
     name: dataTable
@@ -283,20 +288,24 @@ nodes:
     name: notice1
     componentRef: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
     properties:
+      isVisible: '{{true}}'
       left: '7'
       width: '6'
       height: '5'
-      $props: |-
-        {
-          "text": "This page shows how to wire up a REST API to a data table and perform client-side filters."
-        }
+      $props:
+        text: >-
+          This page shows how to wire up a REST API to a data table and perform
+          client-side filters.
   23667ad4-e8ea-44a7-9e65-a8ded3733981:
     type: TEXT
     name: text1
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       width: 40px
       height: fill
       value: 💡
+      showExternalIndicator: '{{false}}'
       fontSize: 3xl
       lineHeight: 100%
       textAlign: center
@@ -315,13 +324,14 @@ nodes:
     name: notice1
     componentRef: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
     properties:
+      isVisible: '{{true}}'
       top: '14'
       width: '12'
       height: '3'
-      $props: |-
-        {
-          text: "The above detail view is a custom component, double click while in edit mode.",
-        }
+      $props:
+        text: >-
+          The above detail view is a custom component, double click while in
+          edit mode.
   57e18596-bbb7-4443-acf0-d07cd636b087:
     type: SWITCH
     name: ccOnlySwitch
@@ -332,7 +342,6 @@ nodes:
       height: '4'
       label: Credit Cards Only
       labelStyle: top
-      value: false
       labelWidth: 80%
   5ca770d5-dbe9-44e6-8c29-740589c0c85f:
     type: FUNCTION
@@ -377,21 +386,28 @@ nodes:
     type: TEXT
     name: text1
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '6'
       width: '12'
       height: '3'
       value: 'Browse to an example:'
+      showExternalIndicator: '{{false}}'
       fontWeight: bold
   6dd2b27f-a396-4c8d-ba3e-5878a4351f0c:
     type: INPUT
     name: sqlSearchInput
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '11'
       width: '12'
       height: '4'
       label: Search
       labelStyle: top
       placeholder: First Last or email@domain.com
+      isRequired: '{{false}}'
+      isClearable: '{{false}}'
       accessoryLeft: icon
       accessoryLeftIcon: MagnifyingGlassIcon
   6f0f802f-0ebd-4e8c-b42f-657ea4a9e0dc:
@@ -399,7 +415,6 @@ nodes:
     name: PG_PASSWORD
     properties:
       value: ''
-      fallbackValue: 'dynaboardrules'
       type: secret
       isRequired: true
       description: >-
@@ -412,6 +427,8 @@ nodes:
     type: FUNCTION
     name: getSQLDataCount
     properties:
+      isEnabled: '{{true}}'
+      loading: '{{false}}'
       action:
         query: |-
           SELECT
@@ -426,14 +443,20 @@ nodes:
           ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
         actionType: PERFORM_QUERY
       callingSemantics: REACTIVE
+      runOnPageLoad: '{{false}}'
   7a19c6c0-0417-4940-bbc6-68ec0d65ce54:
     type: DATA_TABLE
     name: sqlDataTable
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '17'
       width: '12'
       height: '26'
       data: getSQLDataRows.data
+      autoColumns: '{{true}}'
+      flatten: '{{false}}'
+      allowExport: '{{false}}'
       autoselectFirstRow: true
       paginationEnabled: true
       pageSize: 9
@@ -466,22 +489,29 @@ nodes:
       minHeight: 1136px
       padding: 16px
       spacing: 16px
+      headerProps: {}
+      leftSidebarProps: {}
+      rightSidebarProps: {}
+      footerProps: {}
   7c1c6e37-aebb-4028-8474-23cdba65a54a:
     type: TEXT
     name: text3
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '11'
       width: '12'
       height: '2'
       value: 🌐 REST Data Source
       renderMode: link
       href: /restDataSource
-      showExternalIndicator: false
       textDecorationLine: underline
   7c64b908-4d0c-4c7d-a1d7-cab53b47e875:
     type: FUNCTION
     name: getSQLOrders
     properties:
+      isEnabled: '{{true}}'
+      loading: '{{false}}'
       action:
         query: |-
           SELECT
@@ -501,6 +531,8 @@ nodes:
     type: FUNCTION
     name: refreshOnConfigChange
     properties:
+      isEnabled: '{{true}}'
+      loading: '{{false}}'
       action:
         code: >-
           // This function runs automatically when the configuration variable
@@ -522,6 +554,7 @@ nodes:
           ref: 6f7f2240-d34c-4a18-97e5-e19487a2e00a
         actionType: CALL_CLIENT_FUNCTION
       callingSemantics: REACTIVE
+      runOnPageLoad: '{{false}}'
   8a072561-f061-4ccd-996e-f3d04cd7ba75:
     type: CONTAINER
     name: detailViewContainer
@@ -534,6 +567,8 @@ nodes:
         - nodeID: 54787690-0286-4edd-813a-6066a08de86a
           orderKey: Zy
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '44'
       width: '12'
       height: '32'
@@ -547,10 +582,13 @@ nodes:
     type: TEXT
     name: emailText
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '2'
       width: '12'
       height: '1'
       value: '{{$props.row.email}}'
+      showExternalIndicator: '{{false}}'
   8f30b6e6-9972-4379-9215-bceb5c7ff629:
     type: FUNCTION
     name: getRandomData
@@ -569,13 +607,14 @@ nodes:
     type: TEXT
     name: text2
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '9'
       width: '12'
       height: '2'
       value: 📊 SQL Data Source
       renderMode: link
       href: /sqlDataSource
-      showExternalIndicator: false
       textDecorationLine: underline
   900e27e4-3317-432b-b5ea-18c0c69c0a80:
     type: PAGE
@@ -604,14 +643,21 @@ nodes:
       padding: 16px
       spacing: 16px
       gridRowHeight: 16px
+      headerProps: {}
+      leftSidebarProps: {}
+      rightSidebarProps: {}
+      footerProps: {}
   964fd0cf-7c23-4b2c-b451-a94b06c89b82:
     type: TEXT
     name: text2
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       left: '3'
       width: fill
       height: fill
       value: '{{$props.text}}'
+      showExternalIndicator: '{{false}}'
   99314925-ad48-46d6-9b5d-fd8db6c6d44e:
     type: PAGE
     name: index
@@ -625,6 +671,10 @@ nodes:
           orderKey: Zy
         - nodeID: 7c1c6e37-aebb-4028-8474-23cdba65a54a
           orderKey: ZyV
+    properties:
+      includeInSitemap: '{{true}}'
+      leftSidebarOpen: '{{true}}'
+      rightSidebarOpen: '{{true}}'
   bd2c2dda-f115-420b-bd7f-d5d8b32f174d:
     type: TEXT
     name: title
@@ -646,6 +696,8 @@ nodes:
         - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
           orderKey: Zz
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       width: '12'
       height: '5'
       overflow: visible
@@ -673,11 +725,13 @@ nodes:
     name: emptyText
     properties:
       isVisible: '{{!sqlDataTable.selectedRow}}'
+      isEnabled: '{{true}}'
       width: '12'
       height: '13'
       value: |-
         Select a user
         to view details.
+      showExternalIndicator: '{{false}}'
       textAlign: center
       fontWeight: bold
   cae67f4f-0513-4459-b608-f5c27091eaac:
@@ -687,10 +741,13 @@ nodes:
     type: TEXT
     name: ordersTitle
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       top: '4'
       width: '12'
       height: '1'
       value: Orders
+      showExternalIndicator: '{{false}}'
       fontStyle: italic
   ce6b3326-5554-4174-a764-00408bc1be30:
     type: TEXT
@@ -721,22 +778,26 @@ nodes:
     type: TEXT
     name: userText
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       width: '12'
       height: '1'
       value: '{{$props.row.name}}'
+      showExternalIndicator: '{{false}}'
       fontWeight: bold
   e849b2a7-4d1a-46ca-9226-e63180974cc2:
     type: COMPONENT/f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
     name: notice
     componentRef: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
     properties:
+      isVisible: '{{true}}'
       left: '7'
       width: fill
       height: fill
-      $props: |-
-        {
-          text: "This page shows how to wire up a data table to a search bar and detail view backed by paginated SQL.",
-        }
+      $props:
+        text: >-
+          This page shows how to wire up a data table to a search bar and detail
+          view backed by paginated SQL.
   ea85635e-c0f4-4f3d-b5bd-e9395ff8c2e1:
     type: COMPONENT/fe14b182-bf58-458a-b8c0-b094e5104311
     name: detailViewInstance
@@ -745,10 +806,8 @@ nodes:
       isVisible: '{{sqlDataTable.selectedRow}}'
       width: '12'
       height: '13'
-      $props: |-
-        {
-          row: sqlDataTable.selectedRow
-        }
+      $props:
+        row: sqlDataTable.selectedRow
   eeb3347f-de4d-4781-8a1f-f976ebced42c:
     type: INPUT
     name: searchInput
@@ -771,6 +830,8 @@ nodes:
         - nodeID: 964fd0cf-7c23-4b2c-b451-a94b06c89b82
           orderKey: Zz
     properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
       width: '12'
       height: '16'
       layoutStyle: HORIZONTAL_STACK
@@ -786,10 +847,12 @@ nodes:
       height: 80px
       width: 592px
       overflow: visible
-      $props: |-
-        {
-          text: "This is a notice!"
-        }
+      props:
+        - id: ee769515-6b7d-4ebe-94f6-2f1186f41b70
+          description: ''
+          propType: string
+          key: text
+          defaultValue: This is a notice!
   f1f385a4-3853-45e3-bc51-58ba7220c27a:
     type: FUNCTION
     name: copyToClipboard
@@ -827,11 +890,14 @@ nodes:
         element.styles {
           border: 1px solid rgba(0, 0, 0, 0.2);
         }
-      $props: |-
-        {
-          row: {
-            id: 1,
-            name: "Ada Lovelace",
-            email: "alovelace@example.com",
-          },
-        }
+      props:
+        - id: ab1cc4c9-c111-4d59-a9cb-4611c17b109e
+          key: row
+          description: Row data
+          propType: closure
+          defaultValue: |-
+            {
+              id: 1,
+              name: "Ada Lovelace",
+              email: "alovelace@example.com",
+            }
