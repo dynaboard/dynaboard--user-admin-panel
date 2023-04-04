@@ -1,8 +1,6 @@
-runtimeVersion: 0.4.0
-name: Data Table
-description: >-
-  An example data table app filled with data fetched via SQL and REST data
-  sources.
+runtimeVersion: 0.4.1
+name: DynaFin
+description: ''
 type: com.dynaboard/project
 nodes:
   ROOT_NODE:
@@ -10,30 +8,1336 @@ nodes:
     name: ROOT_NODE
     slots:
       pages:
-        - nodeID: 7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71
-          orderKey: Zy
-        - nodeID: 900e27e4-3317-432b-b5ea-18c0c69c0a80
-          orderKey: Zz
-        - nodeID: 99314925-ad48-46d6-9b5d-fd8db6c6d44e
+        - nodeID: f975daa8-70b9-46d5-97d7-4c396c5be1de
+          orderKey: a0
+        - nodeID: 4a34f3ab-e74f-4eee-a7df-77d73d6ee83f
+          orderKey: a1
+        - nodeID: 9ed142bd-510b-4a23-90dd-77a50a66b44c
+          orderKey: a2
+        - nodeID: dfdbb1dc-9b10-41ea-b9f2-bfcf1da840b2
+          orderKey: a3
+      components:
+        - nodeID: 8aef507a-f6bf-424c-9aa2-d33ca4c0ff8e
+          orderKey: a0
+        - nodeID: f0f51e1e-3e3e-4ce5-809f-cc065300c00d
+          orderKey: a1
+        - nodeID: 2c84ef5e-9941-4946-bf69-903d0bd7cc7d
+          orderKey: a1V
+        - nodeID: a1345906-85b3-4110-bf23-12ca7b32231b
+          orderKey: a3
+        - nodeID: 4df304d9-2963-4811-bf89-3044142d0bd3
+          orderKey: a4
+        - nodeID: 88d283c8-fc42-4973-9f7e-8728e649eb07
+          orderKey: a1G
+        - nodeID: 7e108c21-67f5-4ca1-b87e-8dd6eee9d338
+          orderKey: a5
+        - nodeID: 01dada5c-22f0-4b2d-8e80-efb275a3bc18
+          orderKey: a0V
+      config:
+        - nodeID: 31dd1857-a31b-40d9-823f-ad0b0fdb579d
           orderKey: a0
       resources:
-        - nodeID: 37976c4c-068a-47f4-a607-3d0cbf983b72
-          orderKey: a4
-        - nodeID: 6f7f2240-d34c-4a18-97e5-e19487a2e00a
-          orderKey: a3
-        - nodeID: cae67f4f-0513-4459-b608-f5c27091eaac
-          orderKey: a3V
-        - nodeID: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
-          orderKey: a6V
-      components:
-        - nodeID: fe14b182-bf58-458a-b8c0-b094e5104311
+        - nodeID: b960b623-8d34-4896-9cd6-d75caf8ccb2f
           orderKey: a0
-        - nodeID: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
+        - nodeID: a79c36cf-56cd-489c-9db7-27fd9e342fff
+          orderKey: a2
+        - nodeID: 383d020c-48e5-4781-900e-ac99c8cff641
+          orderKey: Zz
+        - nodeID: 10af277a-2607-4d90-9657-6b8bd5350a54
+          orderKey: a3
+      themes:
+        - nodeID: 85afeb9b-71ac-4771-8552-c6cd5018a5da
+          orderKey: a0
+      functions:
+        - nodeID: 928d5671-99e9-4360-9311-01a9986108a4
+          orderKey: a0
+    properties:
+      selectedTheme: 85afeb9b-71ac-4771-8552-c6cd5018a5da
+      authorizationRules: |-
+        [
+          {
+            if: {
+              $and: [
+                {
+                  'session/user': {
+                    $exists: false,
+                  },
+                },
+              ],
+            },
+            then: {
+              allow: false,
+              statusCode: 302,
+              redirectTo: '/auth',
+            },
+          },
+          {
+            if: {
+              $and: [
+                {
+                  'session/user': {
+                    $exists: true,
+                  },
+                },
+              ],
+            },
+            then: {
+              allow: true,
+            },
+          },
+        ]
+  01dada5c-22f0-4b2d-8e80-efb275a3bc18:
+    type: COMPONENT
+    name: MinimalHeader
+    slots:
+      canvas:
+        - nodeID: 4094b6a7-7f80-40bb-a433-f13ae6076f71
+          orderKey: a0
+        - nodeID: 75ae06fb-40c7-4d52-adb9-ce3f6724c61b
           orderKey: a1
-      config:
-        - nodeID: 6f0f802f-0ebd-4e8c-b42f-657ea4a9e0dc
+    properties:
+      height: 132px
+      width: 674px
+      layoutStyle: HORIZONTAL_STACK
+      distributeContent: between
+      padding: '32'
+      styles: |-
+        element.styles {
+        }
+      props:
+        - id: 6c95780f-926d-4113-b6c6-d2504e487e9f
+          key: contactUsText
+          description: ''
+          propType: string
+          defaultValue: Contact us »
+        - id: 74766a1a-e913-4ff4-8eb0-c93e0e7a3017
+          key: contactUsLink
+          description: ''
+          propType: string
+          defaultValue: https://joincommunity.dynaboard.com
+  058a91df-f3f3-4dcf-a016-c755ef281869:
+    type: COMPONENT/4df304d9-2963-4811-bf89-3044142d0bd3
+    name: banner
+    componentRef: 4df304d9-2963-4811-bf89-3044142d0bd3
+    properties:
+      top: NaN
+      left: NaN
+      width: 100%
+      height: ''
+      minHeight: 36px
+      maxHeight: auto
+      $props:
+        message: >-
+          This page shows how to wire up a data table to a search bar and detail
+          view backed by paginated SQL.
+  063657e4-2de9-4009-990a-5fb1302f3d61:
+    type: INPUT
+    name: searchInput
+    properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
+      top: '0'
+      width: '3'
+      height: 48px
+      label: Search
+      labelStyle: top
+      placeholder: Search for an Account ID or Account Name here...
+      isRequired: '{{false}}'
+      isClearable: '{{false}}'
+      accessoryLeft: icon
+      accessoryLeftIcon: MagnifyingGlassIcon
+      styles: |-
+        element.styles {
+        }
+      accessoryLeftColor: brand.page.text
+      left: '0'
+  06aa111c-a814-4d33-b1a9-efd40b05c668:
+    type: TEXT
+    name: subtitle
+    properties:
+      top: NaN
+      left: NaN
+      width: 100%
+      height: 100.00%
+      styles: |-
+        element.styles {
+        }
+      value: >-
+        View your users, transactions, and internal metrics at a glance. Filter
+        and search them in real-time!
+      color: brand.page.text
+  091aaa7c-0385-45a2-9736-8da497efc069:
+    type: CONTAINER
+    name: subtitleContaienr
+    slots:
+      canvas:
+        - nodeID: 06aa111c-a814-4d33-b1a9-efd40b05c668
+          orderKey: a0
+    properties:
+      width: 100%
+      height: ''
+      minHeight: 32px
+      maxHeight: auto
+      overflow: visible
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      backgroundColor: transparent
+      boxShadow: '0'
+      alignContent: center
+  0cbc0bd0-dc92-4bb8-8751-cb68b3669b13:
+    type: TEXT
+    name: subtitle
+    properties:
+      top: NaN
+      left: NaN
+      width: 100%
+      height: 100%
+      styles: |-
+        element.styles {
+        }
+      value: >-
+        Look up a customer, edit customer details, view orders for that
+        customer, and edit order details.
+      color: brand.page.text
+  0e7c21e1-2712-40bb-b1b3-04913e319cd8:
+    type: TEXT
+    name: text1
+    properties:
+      isVisible: '{{!$props.displayLogo}}'
+      top: NaN
+      left: NaN
+      height: 100%
+      styles: |-
+        element.styles {
+        }
+      value: '{{$props.appTitle}}'
+  10af277a-2607-4d90-9657-6b8bd5350a54:
+    type: RESOURCE/HTTP
+    name: RandomDataEnpoint
+    properties:
+      profiles:
+        - baseURL: https://random.dynaboard.dev
+          headers:
+            - key: Content-Type
+              value: application/json
+          environment: ''
+  12023770-015c-4d46-adde-202c015fd52a:
+    type: SWITCH
+    name: ccOnlySwitch
+    properties:
+      height: 42px
+      styles: |-
+        element.styles {
+        }
+      label: Credit Cards Only
+      labelStyle: top
+  13b92f6f-0efa-459d-a246-81ba62df051f:
+    type: FUNCTION
+    name: getSQLDataRows
+    properties:
+      isEnabled: '{{true}}'
+      loading: '{{false}}'
+      action:
+        query: |-
+          SELECT
+            *
+          FROM
+            users
+          WHERE
+            {{ !sqlSearchInput.value }}
+            OR name ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+            OR email ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+          LIMIT {{sqlDataTable.pageSize}}
+          OFFSET {{sqlDataTable.paginationOffset}}
+        targetNode:
+          ref: 383d020c-48e5-4781-900e-ac99c8cff641
+        actionType: PERFORM_QUERY
+      callingSemantics: REACTIVE
+      runOnPageLoad: '{{false}}'
+  19360818-675a-45fc-9c46-17fc31d397ed:
+    type: BUTTON
+    name: dropdownButton
+    properties:
+      top: '0'
+      left: '0'
+      width: 24px
+      height: 24px
+      styles: |-
+        element.styles {
+          font-size: 18px;
+          min-width: auto;
+          min-height: auto;
+        }
+      onClick:
+        function:
+          ref: 4381f8d8-b3c5-4c26-8022-b363101860a3
+      text: ''
+      leftIcon: CaretDownIcon
+      textColor: '#111215'
+      backgroundColor: '#FFFFFF'
+  1a502f60-bf94-4610-8c57-e128f876ccd0:
+    type: COMPONENT/2c84ef5e-9941-4946-bf69-903d0bd7cc7d
+    name: logoWhite
+    componentRef: 2c84ef5e-9941-4946-bf69-903d0bd7cc7d
+    properties:
+      isVisible: '{{$props.displayLogo}}'
+      width: 80%
+      height: 100%
+      $props:
+        logoImageURL: '{{$props.logoImageURL}}'
+        displayLogo: '{{$props.displayLogo}}'
+  20e344f3-a6ae-4b02-86cc-ab597c22eed7:
+    type: TEXT
+    name: descriptionText
+    properties:
+      width: 100%
+      height: auto
+      styles: |-
+        element.styles {
+        }
+      value: '{{$props.descriptionText}}'
+      fontSize: sm
+      color: text.muted
+  217b627f-5cd4-450d-962e-469278f4c6f9:
+    type: CONTAINER
+    name: dataContainer
+    slots:
+      canvas:
+        - nodeID: 899474bf-b5a7-4ecb-ab55-fb8d85fc2b29
           orderKey: a1
-  0fae78ed-3fe1-46b6-833d-3cfdc4bf44dd:
+        - nodeID: a9d77715-36db-420a-a064-9abec5075074
+          orderKey: a0
+    properties:
+      width: 100%
+      height: auto
+      overflow: visible
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: VERTICAL_STACK
+      padding: '0'
+      spacing: '12'
+      backgroundColor: transparent
+      boxShadow: '0'
+  26c27d33-a62d-4525-b852-548262437ce4:
+    type: LOCAL_VARIABLE
+    name: isMenuOpen
+  2817f9d2-bdbd-4b59-8789-8b962bfd4045:
+    type: CONTAINER
+    name: cardContainer
+    slots:
+      canvas:
+        - nodeID: 68b401dc-f8af-4916-a43a-034c6191dc1e
+          orderKey: Zz
+        - nodeID: cc2d758d-70d2-47cf-a60e-8223529e8bb1
+          orderKey: Zx
+    properties:
+      width: '12'
+      height: '32'
+      overflow: visible
+      styles: |-
+        element.styles {
+          border: 1px solid {{$app.colorMode === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)'}};
+
+          _hover {
+            background-color: {{$app.colorMode === 'dark' ? 'dark.background.levelThree' : 'light.background.levelThree'}};
+          }
+        }
+      onClick:
+        function:
+          ref: 3115cccf-5b88-49db-aec5-ba8d19a456d3
+      layoutStyle: HORIZONTAL_STACK
+      gridRows: '0'
+      gridRowHeight: '16'
+      padding: '8'
+      backgroundColor: background.levelTwo
+      boxShadow: '0'
+      borderRadius: 6px
+      alignContent: center
+  29c97ffe-82d5-406f-a59a-b6a1acf157c6:
+    type: FUNCTION
+    name: openMenu
+    properties:
+      action:
+        code: isMenuOpen.value = true
+        targetNode:
+          ref: com.dynaboard.globals:tsclient
+        actionType: CALL_CLIENT_FUNCTION
+  2c84ef5e-9941-4946-bf69-903d0bd7cc7d:
+    type: COMPONENT
+    name: Logo
+    slots:
+      canvas:
+        - nodeID: 99e70e77-457d-4376-949b-441326bd5a2f
+          orderKey: a0
+    properties:
+      height: 86px
+      layoutStyle: VERTICAL_STACK
+      styles: |-
+        element.styles {
+        }
+      props:
+        - id: 8dbf5062-9aad-4063-b2dd-1b741d6be64b
+          key: logoImageURL
+          displayName: Logo Image URL
+          description: ''
+          propType: string
+          defaultValue: ''
+  2d2fdc96-5306-4915-b0e4-d19404d718b2:
+    type: TEXT
+    name: userText
+    properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
+      width: '12'
+      height: '1'
+      value: '{{$props.row.name}}'
+      showExternalIndicator: '{{false}}'
+      fontWeight: bold
+      color: brand.page.text
+  2e923642-90e2-4326-a842-674af01fa163:
+    type: CONTAINER
+    name: iconContainer
+    slots:
+      canvas:
+        - nodeID: b2af889d-a613-44b6-b18d-fc422bc75b1d
+          orderKey: a0
+    properties:
+      top: '0'
+      left: '0'
+      width: 20px
+      height: 20px
+      overflow: visible
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      spacing: '0'
+      backgroundColor: brand.banner.icon
+      borderRadius: 50%
+  2ec42b94-0fdf-42c7-acb0-52cb5adaf7fd:
+    type: FUNCTION
+    name: getNormalizedData
+    properties:
+      action:
+        code: |-
+          const randomData = {{ getRandomData.data }}?.data ?? []
+          const search = {{ searchInput.value }}.toLowerCase()
+          const ccOnly = {{ ccOnlySwitch.value }}
+
+          const filteredData = randomData.filter((d) => {
+            if (ccOnly && d.accountName !== "Credit Card Account") {
+              return false
+            }
+
+            if (!search) {
+              return true
+            }
+
+            return (
+              d.accountName.toLowerCase().indexOf(search) !== -1 ||
+              d.accountID.toLowerCase().indexOf(search) !== -1
+            )
+          })
+
+          const enrichedData = filteredData.map(d => {
+            return {
+              ...d,
+              over500: Number(d.accountTotal) > 500,
+            }
+          })
+
+          const sortedData = _.sortBy(enrichedData, (d) => d.accountID)
+
+          return sortedData
+        targetNode:
+          ref: com.dynaboard.globals:tsclient
+        actionType: CALL_CLIENT_FUNCTION
+      callingSemantics: REACTIVE
+  2f5b818c-fa8e-4a19-84e1-327fdefa5b9d:
+    type: FUNCTION
+    name: getSQLDataCount
+    properties:
+      isEnabled: '{{true}}'
+      loading: '{{false}}'
+      action:
+        query: |-
+          SELECT
+            COUNT(*)
+          FROM
+            users
+          WHERE
+            {{ !sqlSearchInput.value }}
+            OR name ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+            OR email ILIKE {{ "%" + sqlSearchInput.value + "%" }}
+        targetNode:
+          ref: 383d020c-48e5-4781-900e-ac99c8cff641
+        actionType: PERFORM_QUERY
+      callingSemantics: REACTIVE
+      runOnPageLoad: '{{false}}'
+  3115cccf-5b88-49db-aec5-ba8d19a456d3:
+    type: FUNCTION
+    name: navigateToPage
+    properties:
+      action:
+        path: '{{$props.linkTo}}'
+        target: _self
+        targetNode:
+          ref: com.dynaboard.globals:browser
+        actionType: NAVIGATE_TO_PAGE
+  31dd1857-a31b-40d9-823f-ad0b0fdb579d:
+    type: CONFIG
+    name: PG_PASSWORD
+    properties:
+      type: secret
+      value: ''
+      fallbackValue: dynaboardrules
+      isRequired: true
+      description: Configure this secret to connect to the demo PostgreSQL database.
+  36a2572f-31e5-4321-b2e8-545641828287:
+    type: COMPONENT/4df304d9-2963-4811-bf89-3044142d0bd3
+    name: bannerAnnounce
+    componentRef: 4df304d9-2963-4811-bf89-3044142d0bd3
+    properties:
+      top: NaN
+      left: NaN
+      width: 100%
+      height: ''
+      minHeight: 36px
+      maxHeight: auto
+      $props:
+        message: Switch to "Test Mode" and click the cards below to view example pages.
+  383d020c-48e5-4781-900e-ac99c8cff641:
+    type: RESOURCE/POSTGRES
+    name: PostgresReadOnly
+    properties:
+      profiles:
+        - host: 34.69.26.232
+          port: '5432'
+          database: postgres
+          username: readonly
+          password:
+            ref: 31dd1857-a31b-40d9-823f-ad0b0fdb579d
+          useSSL: '{{true}}'
+          sslMode: required
+          environment: ''
+  39d1a818-e3c0-4d17-9041-e4d042a03056:
+    type: CONTAINER
+    name: subheadingContent
+    slots:
+      canvas:
+        - nodeID: 4c951d39-1c69-4b9d-aab2-c69842b0d0ac
+          orderKey: a0
+    properties:
+      width: 100%
+      height: 100%
+      styles: |-
+        element.styles {
+          min-width: 320px;
+          max-width: 960px;
+          margin: 0 auto;
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      spacing: '0'
+      backgroundColor: transparent
+      boxShadow: '0'
+  3aacd8d0-fa32-4895-b96f-08290af2926e:
+    type: CONTAINER
+    name: pageContainer
+    slots:
+      canvas:
+        - nodeID: 52e39fdf-749b-4737-a598-3b3bfb21fc1d
+          orderKey: a0
+        - nodeID: d893f200-5595-4656-a6b1-d1347bdcacf2
+          orderKey: a1
+        - nodeID: 3fa85eae-efc4-44af-b935-1c86dc5dc899
+          orderKey: a2
+    properties:
+      top: '8'
+      left: '3'
+      width: 100%
+      minWidth: auto
+      maxWidth: 960px
+      height: ''
+      styles: |-
+        element.styles {
+          border: 1px solid {{$app.colorMode === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)'}};
+        }
+      layoutStyle: VERTICAL_STACK
+      spacing: '18'
+      backgroundColor: background.content
+      boxShadow: '0'
+      borderRadius: 10px
+  3fa85eae-efc4-44af-b935-1c86dc5dc899:
+    type: CONTAINER
+    name: dataContainer
+    slots:
+      canvas:
+        - nodeID: 61092008-8c56-4ad6-8db5-8e3864865728
+          orderKey: a0
+        - nodeID: 404e053a-fa32-44ac-a26b-b1afa3d28206
+          orderKey: Zy
+    properties:
+      width: 100%
+      height: auto
+      overflow: visible
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: VERTICAL_STACK
+      padding: '0'
+      spacing: '12'
+      backgroundColor: transparent
+      boxShadow: '0'
+  3fe6e1ac-d340-4b31-8915-2a125b3169a0:
+    type: TEXT
+    name: titleText
+    properties:
+      width: 100%
+      height: auto
+      styles: |-
+        element.styles {
+        }
+      value: '{{$props.titleText}}'
+      fontSize: xl
+      fontWeight: bold
+  404e053a-fa32-44ac-a26b-b1afa3d28206:
+    type: CONTAINER
+    name: filterContainer
+    slots:
+      canvas:
+        - nodeID: 063657e4-2de9-4009-990a-5fb1302f3d61
+          orderKey: a0
+        - nodeID: 12023770-015c-4d46-adde-202c015fd52a
+          orderKey: a1
+    properties:
+      width: 100%
+      height: ''
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      backgroundColor: transparent
+      boxShadow: '0'
+      distributeContent: center
+      alignContent: center
+  4094b6a7-7f80-40bb-a433-f13ae6076f71:
+    type: COMPONENT/2c84ef5e-9941-4946-bf69-903d0bd7cc7d
+    name: logo1
+    componentRef: 2c84ef5e-9941-4946-bf69-903d0bd7cc7d
+    properties:
+      top: NaN
+      left: NaN
+      width: 134px
+      height: 100%
+      $props:
+        logoImageURL: >-
+          {{$app.colorMode === 'dark' ?
+          'https://storage.googleapis.com/dynaboard-demo/dynafin_white.svg' :
+          'https://storage.googleapis.com/dynaboard-demo/dynafin_black.svg'}}
+  4381f8d8-b3c5-4c26-8022-b363101860a3:
+    type: FUNCTION
+    name: toggleMenu
+    properties:
+      action:
+        code: |-
+          if (isMenuOpen.value) {
+            await closeMenu()
+          } else {
+            await openMenu()
+          }
+        targetNode:
+          ref: com.dynaboard.globals:tsclient
+        actionType: CALL_CLIENT_FUNCTION
+  4a34f3ab-e74f-4eee-a7df-77d73d6ee83f:
+    type: PAGE
+    name: transactions
+    slots:
+      canvas:
+        - nodeID: 3aacd8d0-fa32-4895-b96f-08290af2926e
+          orderKey: a0
+      functions:
+        - nodeID: 63fe1799-f1b0-4740-bf84-d9e1a7f690ae
+          orderKey: a0
+        - nodeID: 2ec42b94-0fdf-42c7-acb0-52cb5adaf7fd
+          orderKey: a1
+    properties:
+      title: Transactions
+      backgroundColor: background.page
+      layoutStyle: VERTICAL_STACK
+      styles: |-
+        element.styles {
+        }
+      headerComponent: COMPONENT/8aef507a-f6bf-424c-9aa2-d33ca4c0ff8e
+      footerComponent: COMPONENT/a1345906-85b3-4110-bf23-12ca7b32231b
+      headerProps:
+        subheading: Transactions
+        logoImageURL: https://storage.googleapis.com/dynaboard-demo/dynafin_white.svg
+  4a420057-15ea-4f5c-9952-b016ad65f0b8:
+    type: TEXT
+    name: loggedInText
+    properties:
+      top: NaN
+      left: NaN
+      height: auto
+      styles: |-
+        element.styles {
+        }
+      value: Signed in as
+      fontSize: sm
+      textAlign: right
+      color: '#FFF'
+  4a91bc7a-b748-4028-8ccb-34d9da414dfa:
+    type: CONTAINER
+    name: informationContainer
+    slots:
+      canvas:
+        - nodeID: 58d4b20c-da9e-41ee-bc9b-e36374faa4b4
+          orderKey: a0
+        - nodeID: 74314dd7-4167-4047-8068-2171c020aa08
+          orderKey: a1
+    properties:
+      width: 100%
+      height: fit-content
+      overflow: visible
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: VERTICAL_STACK
+      padding: '0'
+      spacing: '0'
+      backgroundColor: transparent
+      boxShadow: '0'
+  4c951d39-1c69-4b9d-aab2-c69842b0d0ac:
+    type: TEXT
+    name: subheading
+    properties:
+      width: 100%
+      height: 100%
+      styles: |-
+        element.styles {
+        }
+      value: '{{$props.subheading}}'
+      fontWeight: bold
+      color: '#FFF'
+  4d0a2a03-fa78-4089-9969-13ef392739e7:
+    type: CONTAINER
+    name: headingContainer
+    slots:
+      canvas:
+        - nodeID: 7ef1230d-f295-4f52-9435-e69c1ea95e21
+          orderKey: Zz
+    properties:
+      top: NaN
+      left: NaN
+      width: 100%
+      height: 70px
+      overflow: visible
+      styles: |-
+        element.styles {
+          padding: 0px 12px;
+          backdrop-filter: blur(4px);
+          position: relative;
+          z-index: 1;
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      spacing: '8'
+      backgroundColor: '#05319ECC'
+      boxShadow: '0'
+      borderRadius: '0'
+      distributeContent: center
+      alignContent: center
+  4df304d9-2963-4811-bf89-3044142d0bd3:
+    type: COMPONENT
+    name: Banner
+    slots:
+      canvas:
+        - nodeID: 647c872b-4ff3-4e9c-aa25-ac55db4f83c7
+          orderKey: a1
+    properties:
+      height: 36px
+      width: 800px
+      borderRadius: 6px
+      layoutStyle: HORIZONTAL_STACK
+      styles: |-
+        element.styles {
+        }
+      props:
+        - id: 0e62928a-c82f-40c8-9117-6efed9e29219
+          key: message
+          description: ''
+          propType: string
+          defaultValue: Notice
+  4ee2f59e-8df7-46c6-8a02-bbcd46633eff:
+    type: TEXT
+    name: logoutText
+    properties:
+      top: NaN
+      left: NaN
+      width: 100%
+      height: 100%
+      styles: |-
+        element.styles {
+        }
+      onClick:
+        function:
+          ref: d41f1985-9b7f-4110-9dde-209051a62c39
+      value: Logout
+      textAlign: right
+  52e39fdf-749b-4737-a598-3b3bfb21fc1d:
+    type: CONTAINER
+    name: informationContainer
+    slots:
+      canvas:
+        - nodeID: 6cf1d5f0-7b4a-4c5c-a977-58f088ed627e
+          orderKey: a0
+        - nodeID: 923a3c08-e812-411b-ac35-0a977a0b9c10
+          orderKey: Zz
+    properties:
+      width: 100%
+      height: fit-content
+      overflow: visible
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: VERTICAL_STACK
+      padding: '0'
+      spacing: '0'
+      backgroundColor: transparent
+      boxShadow: '0'
+  54095c4a-1a15-43fc-b056-bbfa30e6279f:
+    type: TEXT
+    name: signInSubtitle
+    properties:
+      fontSize: lg
+      height: '2'
+      isEnabled: '{{true}}'
+      isVisible: '{{true}}'
+      showExternalIndicator: '{{false}}'
+      styles: |-
+        element.styles {
+        }
+      top: '9'
+      value: Sign in to {{$app.name}}
+      width: '12'
+      color: text.muted
+  58d4b20c-da9e-41ee-bc9b-e36374faa4b4:
+    type: CONTAINER
+    name: headerContainer
+    slots:
+      canvas:
+        - nodeID: f124b430-a852-4776-abce-6502ac5f6dbd
+          orderKey: Zz
+    properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
+      width: 100%
+      height: ''
+      overflow: visible
+      layoutStyle: >-
+        {{$app.viewportWidth < $breakpoint.Tablet ? 'VERTICAL_STACK' :
+        'HORIZONTAL_STACK'}}
+      padding: '0'
+      spacing: 4px
+      backgroundColor: transparent
+      boxShadow: '0'
+      alignContent: center
+      minHeight: 32px
+      maxHeight: auto
+  5ae88978-2305-4195-a5b6-e93618fc0bdf:
+    type: TEXT
+    name: bannerText
+    properties:
+      top: NaN
+      left: NaN
+      width: '1'
+      height: auto
+      minHeight: 12px
+      maxHeight: auto
+      styles: |-
+        element.styles {
+        }
+      value: '{{$props.message}}'
+      fontSize: sm
+      color: brand.banner.text
+  61092008-8c56-4ad6-8db5-8e3864865728:
+    type: DATA_TABLE
+    name: dataTable
+    properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
+      top: '17'
+      width: 100%
+      height: 420px
+      data: getNormalizedData.data
+      flatten: '{{false}}'
+      allowExport: '{{false}}'
+      autoselectFirstRow: true
+      paginationEnabled: true
+      pageSize: '{{getNormalizedData.data.length}}'
+      totalRowCount: '{{getNormalizedData.data.length}}'
+      onSelectRow: null
+      onRefresh:
+        function:
+          ref: 63fe1799-f1b0-4740-bf84-d9e1a7f690ae
+      minHeight: 420px
+      maxHeight: 600px
+      columns:
+        - header: accountID
+          accessor: accountID
+          id: a25864d5-7d31-42ea-9259-7dbde1b3d393
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: accountName
+          accessor: accountName
+          id: 94442912-98da-4d69-a13a-d5d57372387c
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: accountTotal
+          accessor: accountTotal
+          id: 2d9f8354-8fa8-4c16-b23d-dc5a58bc4233
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: currencyName
+          accessor: currencyName
+          id: e4508490-bd81-4f59-9710-212171fb1c49
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: currencyCode
+          accessor: currencyCode
+          id: 1a92481f-2b94-4a1f-b024-fd32f3136b81
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: currencySymbol
+          accessor: currencySymbol
+          id: 4afcc24c-111c-4cac-893e-1621be530296
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+        - header: over500
+          accessor: over500
+          id: 32e1ce85-2836-4c5b-8a36-888e0b1695e9
+          width: auto
+          widthUnit: '%'
+          minWidthUnit: '%'
+          minWidth: 15
+          isVisible: true
+          allowSortBy: '{{true}}'
+          renderAs: default
+          dateTimeFormat: MMMM dd, y 'at' ttt
+  624e28dd-b391-4800-8881-cfde68c43a44:
+    type: CONTAINER
+    name: detailViewContainer
+    slots:
+      canvas:
+        - nodeID: 9ea4fffb-150f-4b7f-a755-b8a5c14648ba
+          orderKey: Zx
+        - nodeID: 68c1397c-3e9a-45c6-96df-89299bd5b316
+          orderKey: Zw
+    properties:
+      isEnabled: '{{true}}'
+      top: '44'
+      width: 100.00%
+      height: 380px
+      styles: |-
+        element.styles {
+          border: 1px solid {{$app.colorMode === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)'}};
+        }
+      backgroundColor: background.levelTwo
+      borderRadius: 6px
+      boxShadow: '0'
+      layoutStyle: VERTICAL_STACK
+      overflow: visible
+      padding: '8'
+  63fe1799-f1b0-4740-bf84-d9e1a7f690ae:
+    type: FUNCTION
+    name: getRandomData
+    properties:
+      action:
+        path: /api/finance?size=25
+        body: ''
+        headers: []
+        method: GET
+        bodyType: application/json
+        targetNode:
+          ref: 10af277a-2607-4d90-9657-6b8bd5350a54
+        actionType: PERFORM_REQUEST
+      runOnPageLoad: '{{true}}'
+      onSuccess: ''
+      onFailure: ''
+  647c872b-4ff3-4e9c-aa25-ac55db4f83c7:
+    type: CONTAINER
+    name: bannerContainer
+    slots:
+      canvas:
+        - nodeID: 2e923642-90e2-4326-a842-674af01fa163
+          orderKey: a0
+        - nodeID: 5ae88978-2305-4195-a5b6-e93618fc0bdf
+          orderKey: a1
+    properties:
+      width: 100%
+      height: 100%
+      styles: |-
+        element.styles {
+          border: 1px solid;
+          border-color: {{$app.colorMode === 'dark' ? "#FFFCF9" : "#FED7AA"}};
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: 8px
+      backgroundColor: brand.banner.background
+      borderRadius: 6px
+      alignContent: center
+  68b401dc-f8af-4916-a43a-034c6191dc1e:
+    type: CONTAINER
+    name: contentsContainer
+    slots:
+      canvas:
+        - nodeID: 3fe6e1ac-d340-4b31-8915-2a125b3169a0
+          orderKey: a1
+        - nodeID: 20e344f3-a6ae-4b02-86cc-ab597c22eed7
+          orderKey: a2
+    properties:
+      left: '5'
+      width: '1'
+      height: 106px
+      overflow: visible
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: VERTICAL_STACK
+      padding: '0'
+      spacing: '6'
+      backgroundColor: transparent
+      boxShadow: '0'
+      distributeContent: center
+  68c1397c-3e9a-45c6-96df-89299bd5b316:
+    type: TEXT
+    name: emptyText
+    properties:
+      isVisible: '{{!sqlDataTable.selectedRow}}'
+      isEnabled: '{{true}}'
+      width: 100%
+      height: '1'
+      value: |-
+        Select a user
+        to view details.
+      showExternalIndicator: '{{false}}'
+      textAlign: center
+      fontWeight: bold
+      styles: |-
+        element.styles {
+        }
+  6cf1d5f0-7b4a-4c5c-a977-58f088ed627e:
+    type: CONTAINER
+    name: subtitleContaienr
+    slots:
+      canvas:
+        - nodeID: ba7828fd-044d-43a9-ad6d-0c8ed4eef71c
+          orderKey: a0
+    properties:
+      width: 100%
+      height: ''
+      minHeight: 32px
+      maxHeight: auto
+      overflow: visible
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      backgroundColor: transparent
+      boxShadow: '0'
+      alignContent: center
+  7308312e-3cb3-4cf8-beb9-dae9de05909c:
+    type: CONTAINER
+    name: subheadingContainer
+    slots:
+      canvas:
+        - nodeID: 39d1a818-e3c0-4d17-9041-e4d042a03056
+          orderKey: a1
+    properties:
+      top: '11'
+      width: 100%
+      height: 40px
+      overflow: visible
+      styles: |-
+        element.styles {
+          padding: 0 16px;
+          backdrop-filter: blur(4px);
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      backgroundColor: '#002175DC'
+      borderRadius: '0'
+      alignContent: center
+  74314dd7-4167-4047-8068-2171c020aa08:
+    type: CONTAINER
+    name: subtitleContaienr
+    slots:
+      canvas:
+        - nodeID: 0cbc0bd0-dc92-4bb8-8751-cb68b3669b13
+          orderKey: a0
+    properties:
+      width: 100%
+      height: ''
+      minHeight: 32px
+      maxHeight: auto
+      overflow: visible
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      backgroundColor: transparent
+      boxShadow: '0'
+      alignContent: center
+  75ae06fb-40c7-4d52-adb9-ce3f6724c61b:
+    type: TEXT
+    name: text1
+    properties:
+      top: NaN
+      left: NaN
+      width: auto
+      height: 100%
+      styles: |-
+        element.styles {
+        }
+      value: '{{$props.contactUsText}}'
+      renderMode: link
+      href: '{{$props.contactUsLink}}'
+      textAlign: right
+      textDecorationLine: underline
+      color: text.accent
+  7a3ad36c-b4ff-43fa-a65f-e741050af891:
+    type: FUNCTION
+    name: goToOverview
+    properties:
+      action:
+        path: /
+        target: _self
+        targetNode:
+          ref: com.dynaboard.globals:browser
+        actionType: NAVIGATE_TO_PAGE
+  7b626ec5-d34d-4c1d-8bfd-2b669c4b090d:
+    type: FUNCTION
+    name: getSession
+    properties:
+      action:
+        code: await getUserSession()
+        targetNode:
+          ref: com.dynaboard.globals:tsclient
+        actionType: CALL_CLIENT_FUNCTION
+      runOnPageLoad: true
+  7e108c21-67f5-4ca1-b87e-8dd6eee9d338:
+    type: COMPONENT
+    name: InternalCard
+    slots:
+      canvas:
+        - nodeID: 2817f9d2-bdbd-4b59-8789-8b962bfd4045
+          orderKey: a0
+      functions:
+        - nodeID: 3115cccf-5b88-49db-aec5-ba8d19a456d3
+          orderKey: a0
+    properties:
+      height: 126px
+      maxHeight: 320px
+      width: 420px
+      maxWidth: 420px
+      styles: |-
+        element.styles {
+        }
+      props:
+        - id: 12aad698-3529-4af7-82cb-80aa9f10aef7
+          key: emoji
+          description: ''
+          propType: string
+          defaultValue: 📈
+        - id: 47056e73-aae0-4f44-93dc-d5f517d5e15f
+          key: titleText
+          description: ''
+          propType: string
+          defaultValue: Title Text
+        - id: 57a8e76c-ad3c-4bad-83b2-bb08c77180b3
+          key: descriptionText
+          description: ''
+          propType: string
+          defaultValue: >-
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        - id: 9ab03a16-4a81-4914-ba15-992613b9b8cc
+          key: linkTo
+          displayName: Link To
+          description: ''
+          propType: string
+          defaultValue: /
+  7ef1230d-f295-4f52-9435-e69c1ea95e21:
+    type: CONTAINER
+    name: headerContent
+    slots:
+      canvas:
+        - nodeID: b74a9643-5ba3-4dd1-92eb-7006cb936ef4
+          orderKey: a0
+        - nodeID: e2600868-dcd0-4f60-ae4f-bb29d4c1345c
+          orderKey: a1
+        - nodeID: 956e2167-905c-48b6-a3f2-ab3216c0643f
+          orderKey: a2
+    properties:
+      width: 100%
+      minWidth: 320px
+      maxWidth: 960px
+      height: 100%
+      overflow: visible
+      styles: |-
+        element.styles {
+          min-width: 320px;
+          max-width: 960px;
+          margin: 0 auto;
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      spacing: '8'
+      backgroundColor: transparent
+      boxShadow: '0'
+      alignContent: center
+  813de092-3825-470c-8aaa-52648c8d9794:
+    type: TEXT
+    name: copyrightText
+    properties:
+      top: '0'
+      left: '0'
+      width: fit-content
+      height: 100%
+      styles: |-
+        element.styles {
+        }
+      value: >-
+        © Copyright {{$props.copyrightEndYear === $props.copyrightStartYear ?
+        $props.copyrightStartYear : `${$props.copyrightStartYear} –
+        ${$props.copyrightEndYear}`}}
+      textAlign: center
+      color: text.muted
+  855cfd76-82ee-4d75-878a-8dc00e830ee3:
+    type: TEXT
+    name: emailText
+    properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
+      top: '2'
+      width: '12'
+      height: '1'
+      value: '{{$props.row.email}}'
+      showExternalIndicator: '{{false}}'
+      color: brand.page.text
+  85afeb9b-71ac-4771-8552-c6cd5018a5da:
+    type: THEME
+    name: theme
+    properties:
+      theme: |-
+        return {
+          colors: {
+            light: {
+              background: {
+                content: "#F8F8F8",
+                page: "#DBDBDB"
+              },
+              brand: {
+                primary: "#002175",
+                header: "#002175CC",
+                subheading: "#002175DC",
+                banner: {
+                  text: "#525252",
+                  icon: "#F76820",
+                  background: "#FFF7EDFF",
+                  border: "#FED7AA"
+                },
+                page: {
+                  text: "#000",
+                }
+              },
+              navbar: {
+                background: {
+                  active: "#FFF"
+                },
+                text: {
+                  base: "#FFF",
+                  active: "#002175",
+                }
+              }
+            },
+            dark: {
+              background: {
+                content: "#34373D",
+                page: "#1D1E21"
+              },
+              brand: {
+                primary: "#05319E",
+                header: "#05319ECC",
+                subheading: "#002175DC",
+                banner: {
+                  text: "#525252",
+                  icon: "#F76820",
+                  background: "#F0D1AA",
+                  border: "#FFFCF9"
+                },
+                page: {
+                  text: "#FFF",
+                }
+              },
+              navbar: {
+                background: {
+                  active: "#FFF"
+                },
+                text: {
+                  base: "#FFF",
+                  active: "#002175"
+                }
+              }
+            }
+          }
+        }
+  860bd4c6-8185-4ea7-901b-e8461630d82f:
     type: DATA_TABLE
     name: dataTable
     properties:
@@ -135,324 +1439,77 @@ nodes:
       allowExport: '{{false}}'
       autoselectFirstRow: true
       paginationEnabled: '{{false}}'
-  1412782e-e410-44ea-8a5e-25d4a283ac2b:
-    type: FUNCTION
-    name: getSQLDataRows
+  88cec4ab-afc2-4e51-b63e-0387727e9862:
+    type: CONTAINER
+    name: signInContainer
+    slots:
+      canvas:
+        - nodeID: d0516475-3f42-43b9-b1f2-f1c9b5629903
+          orderKey: a0
+        - nodeID: d3204e7b-6647-4262-98e9-67a8f8eaa4bf
+          orderKey: Zz
+        - nodeID: 54095c4a-1a15-43fc-b056-bbfa30e6279f
+          orderKey: ZzV
     properties:
+      backgroundColor: transparent
+      borderRadius: '5'
+      gridRowHeight: '16'
+      gridRows: '0'
+      height: 464px
       isEnabled: '{{true}}'
-      loading: '{{false}}'
-      action:
-        query: |-
-          SELECT
-            *
-          FROM
-            users
-          WHERE
-            {{ !sqlSearchInput.value }}
-            OR name ILIKE {{ "%" + sqlSearchInput.value + "%" }}
-            OR email ILIKE {{ "%" + sqlSearchInput.value + "%" }}
-          LIMIT {{sqlDataTable.pageSize}}
-          OFFSET {{sqlDataTable.paginationOffset}}
-        targetNode:
-          ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
-        actionType: PERFORM_QUERY
-      callingSemantics: REACTIVE
-      runOnPageLoad: '{{false}}'
-  1aeeba95-af76-495c-8fa9-fb43bfd7da23:
-    type: DATA_TABLE
-    name: dataTable
-    properties:
-      top: '11'
-      width: '12'
-      height: '41'
-      widthMode: FIXED
-      heightMode: FIXED
-      data: '{{ getNormalizedData.data }}'
-      columns:
-        - header: Account ID
-          accessor: accountID
-          id: 1fa9864d-9663-4581-952d-64f9953fad8a
-          width: 11
-          minWidth: 10
-          renderAs: default
-          dateTimeFormat: ''
-          widthUnit: '%'
-          minWidthUnit: '%'
-          isVisible: 'true'
-          allowSortBy: 'true'
-          buttonText: Button
-          onButtonClick: null
-        - header: Account Name
-          accessor: accountName
-          id: 6fc95e17-de2a-440b-9511-643623139b6d
-          width: 0
-          minWidth: 25
-          renderAs: default
-          dateTimeFormat: ''
-          widthUnit: '%'
-          minWidthUnit: '%'
-          isVisible: 'true'
-          allowSortBy: 'true'
-          buttonText: Button
-          onButtonClick: null
-        - header: Total
-          accessor: accountTotal
-          id: b5fc034d-b471-4fa5-8d2b-b4b39d37b3b4
-          width: 0
-          minWidth: 15
-          renderAs: default
-          dateTimeFormat: ''
-          widthUnit: '%'
-          minWidthUnit: '%'
-          isVisible: 'true'
-          allowSortBy: 'true'
-          buttonText: Button
-          onButtonClick: null
-        - header: Currency
-          accessor: currencyCode
-          id: c8caab31-080c-42ce-9166-de455e11de5a
-          width: 9
-          minWidth: 8
-          renderAs: default
-          dateTimeFormat: ''
-          widthUnit: '%'
-          minWidthUnit: '%'
-          isVisible: 'true'
-          allowSortBy: 'true'
-          buttonText: Button
-          onButtonClick: null
-        - header: Symbol
-          accessor: currencySymbol
-          id: cc15c472-96e3-4c3d-b150-ecfadf11f40a
-          width: 10
-          minWidth: 10
-          renderAs: default
-          dateTimeFormat: ''
-          widthUnit: '%'
-          minWidthUnit: '%'
-          isVisible: 'true'
-          allowSortBy: 'true'
-          buttonText: Button
-          onButtonClick: null
-        - header: High-value
-          accessor: over500
-          id: 06a2d3bd-1426-4457-beb2-901f6ea0b494
-          width: 0
-          minWidth: 7
-          renderAs: default
-          dateTimeFormat: MMMM dd, y 'at' ttt
-          widthUnit: '%'
-          minWidthUnit: '%'
-          isVisible: 'true'
-          allowSortBy: 'true'
-          buttonText: Button
-          onButtonClick: null
-        - header: Actions
-          accessor: ''
-          id: fc7c6092-3163-45b9-b3c8-02dfb09d91fd
-          width: 0
-          minWidth: 15
-          renderAs: button
-          dateTimeFormat: MMMM dd, y 'at' ttt
-          widthUnit: '%'
-          minWidthUnit: '%'
-          isVisible: 'true'
-          allowSortBy: 'true'
-          buttonText: Copy
-          onButtonClick:
-            function:
-              ref: f1f385a4-3853-45e3-bc51-58ba7220c27a
-        - header: currencyName
-          accessor: currencyName
-          id: f7af481f-fa91-4d0d-9dc5-2a6a003e3104
-          width: 0
-          minWidth: 15
-          renderAs: default
-          dateTimeFormat: ''
-          widthUnit: '%'
-          minWidthUnit: '%'
-          isVisible: 'false'
-          allowSortBy: 'true'
-          buttonText: Button
-          onButtonClick: null
-      allowDownload: '{{true}}'
-      downloadFormat: JSON
-      flatten: '{{true}}'
-      selectedRowIndex: '{{ 0 }}'
-      onSelectRow: ''
-      onDeselectRow: ''
-      autoselectFirstRow: '{{true}}'
-      autoColumns: false
-  1e2ad524-7b53-4f31-8b05-675853620f89:
-    type: COMPONENT/f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
-    name: notice1
-    componentRef: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
-    properties:
       isVisible: '{{true}}'
-      left: '7'
-      width: '6'
-      height: '5'
-      $props:
-        text: >-
-          This page shows how to wire up a REST API to a data table and perform
-          client-side filters.
-  23667ad4-e8ea-44a7-9e65-a8ded3733981:
-    type: TEXT
-    name: text1
+      styles: |-
+        element.styles {
+        }
+      top: '9'
+      width: 367px
+      boxShadow: '0'
+  88d283c8-fc42-4973-9f7e-8728e649eb07:
+    type: COMPONENT
+    name: DetailView
+    slots:
+      canvas:
+        - nodeID: 860bd4c6-8185-4ea7-901b-e8461630d82f
+          orderKey: a0
+        - nodeID: fea52d69-d63b-4822-b571-c4777fcc9b9b
+          orderKey: Zz
+        - nodeID: 855cfd76-82ee-4d75-878a-8dc00e830ee3
+          orderKey: Zy
+        - nodeID: 2d2fdc96-5306-4915-b0e4-d19404d718b2
+          orderKey: Zx
+      functions:
+        - nodeID: 9f1af2f3-f678-463a-9e8a-1b6fb1497a0a
+          orderKey: a0
     properties:
-      isVisible: '{{true}}'
-      isEnabled: '{{true}}'
-      width: 40px
-      height: fill
-      value: 💡
-      showExternalIndicator: '{{false}}'
-      fontSize: 3xl
-      lineHeight: 100%
-      textAlign: center
-  37976c4c-068a-47f4-a607-3d0cbf983b72:
-    type: RESOURCE/HTTP
-    name: randomDataEndpoint
-    properties:
-      method: GET
-      bodyType: application/json
-      profiles:
-        - environment: ''
-          baseURL: https://random.dynaboard.dev
-          headers: []
-  54787690-0286-4edd-813a-6066a08de86a:
-    type: COMPONENT/f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
-    name: notice1
-    componentRef: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
-    properties:
-      isVisible: '{{true}}'
-      top: '14'
-      width: '12'
-      height: '3'
-      $props:
-        text: >-
-          The above detail view is a custom component, double click while in
-          edit mode.
-  57e18596-bbb7-4443-acf0-d07cd636b087:
-    type: SWITCH
-    name: ccOnlySwitch
-    properties:
-      top: '7'
-      left: '11'
-      width: '2'
-      height: '4'
-      label: Credit Cards Only
-      labelStyle: top
-      labelWidth: 80%
-  5ca770d5-dbe9-44e6-8c29-740589c0c85f:
-    type: FUNCTION
-    name: getNormalizedData
-    properties:
-      action:
-        code: |-
-          const randomData = {{ getRandomData.data }}?.data ?? []
-          const search = {{ searchInput.value }}.toLowerCase()
-          const ccOnly = {{ ccOnlySwitch.value }}
-
-          const filteredData = randomData.filter((d) => {
-            if (ccOnly && d.accountName !== "Credit Card Account") {
-              return false
+      height: 466px
+      width: 714px
+      backgroundColor: background.levelOne
+      borderRadius: 6px
+      padding: 12px
+      styles: |-
+        element.styles {
+          border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+      props:
+        - id: ab1cc4c9-c111-4d59-a9cb-4611c17b109e
+          key: row
+          description: Row data
+          propType: closure
+          defaultValue: |-
+            {
+              id: 1,
+              name: "Ada Lovelace",
+              email: "alovelace@example.com",
             }
-
-            if (!search) {
-              return true
-            }
-
-            return (
-              d.accountName.toLowerCase().indexOf(search) !== -1 ||
-              d.accountID.toLowerCase().indexOf(search) !== -1
-            )
-          })
-
-          const enrichedData = filteredData.map(d => {
-            return {
-              ...d,
-              over500: Number(d.accountTotal) > 500,
-            }
-          })
-
-          const sortedData = _.sortBy(enrichedData, (d) => d.accountID)
-
-          return sortedData
-        targetNode:
-          ref: 6f7f2240-d34c-4a18-97e5-e19487a2e00a
-        actionType: CALL_CLIENT_FUNCTION
-      callingSemantics: REACTIVE
-  68c6de3c-56c6-40bc-a8d4-e9ecb364cff9:
-    type: TEXT
-    name: text1
-    properties:
-      isVisible: '{{true}}'
-      isEnabled: '{{true}}'
-      top: '6'
-      width: '12'
-      height: '3'
-      value: 'Browse to an example:'
-      showExternalIndicator: '{{false}}'
-      fontWeight: bold
-  6dd2b27f-a396-4c8d-ba3e-5878a4351f0c:
-    type: INPUT
-    name: sqlSearchInput
-    properties:
-      isVisible: '{{true}}'
-      isEnabled: '{{true}}'
-      top: '11'
-      width: '12'
-      height: '4'
-      label: Search
-      labelStyle: top
-      placeholder: First Last or email@domain.com
-      isRequired: '{{false}}'
-      isClearable: '{{false}}'
-      accessoryLeft: icon
-      accessoryLeftIcon: MagnifyingGlassIcon
-  6f0f802f-0ebd-4e8c-b42f-657ea4a9e0dc:
-    type: CONFIG
-    name: PG_PASSWORD
-    properties:
-      value: ''
-      type: secret
-      isRequired: true
-      fallbackValue: dynaboardrules
-      description: >-
-        Configure this secret to connect to the demo PostgreSQL database.
-  6f7f2240-d34c-4a18-97e5-e19487a2e00a:
-    type: RESOURCE/TYPESCRIPT_CLIENT
-    name: typescriptClient
-  727485fc-83be-48c5-a38c-9ea08b99b48f:
-    type: FUNCTION
-    name: getSQLDataCount
-    properties:
-      isEnabled: '{{true}}'
-      loading: '{{false}}'
-      action:
-        query: |-
-          SELECT
-            COUNT(*)
-          FROM
-            users
-          WHERE
-            {{ !sqlSearchInput.value }}
-            OR name ILIKE {{ "%" + sqlSearchInput.value + "%" }}
-            OR email ILIKE {{ "%" + sqlSearchInput.value + "%" }}
-        targetNode:
-          ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
-        actionType: PERFORM_QUERY
-      callingSemantics: REACTIVE
-      runOnPageLoad: '{{false}}'
-  7a19c6c0-0417-4940-bbc6-68ec0d65ce54:
+  899474bf-b5a7-4ecb-ab55-fb8d85fc2b29:
     type: DATA_TABLE
     name: sqlDataTable
     properties:
       isVisible: '{{true}}'
       isEnabled: '{{true}}'
       top: '17'
-      width: '12'
-      height: '26'
+      width: 100%
+      height: 420px
       data: getSQLDataRows.data
       autoColumns: '{{true}}'
       flatten: '{{false}}'
@@ -464,49 +1521,310 @@ nodes:
       onSelectRow: null
       onRefresh:
         function:
-          ref: 1412782e-e410-44ea-8a5e-25d4a283ac2b
-  7a91ff83-26e6-4e5f-bfbf-d114d8ecbe71:
-    type: PAGE
-    name: sqlDataSource
-    slots:
-      functions:
-        - nodeID: 727485fc-83be-48c5-a38c-9ea08b99b48f
-          orderKey: a0V
-        - nodeID: 1412782e-e410-44ea-8a5e-25d4a283ac2b
-          orderKey: a0
-        - nodeID: 855f92f6-17f0-435a-9f81-ac3a7da5de95
-          orderKey: a5
-      canvas:
-        - nodeID: 7a19c6c0-0417-4940-bbc6-68ec0d65ce54
-          orderKey: Zx
-        - nodeID: 6dd2b27f-a396-4c8d-ba3e-5878a4351f0c
-          orderKey: Zy
-        - nodeID: 8a072561-f061-4ccd-996e-f3d04cd7ba75
-          orderKey: Zv
-        - nodeID: c7f13cff-f1a8-4ce1-b1ff-1c94f0aa3b45
-          orderKey: Zr
+          ref: aaa5aeb6-99ab-4133-ac91-452d0c1330ac
+      minHeight: 420px
+      maxHeight: 600px
+  8a81b7fd-0b85-41f7-b5e3-5491cd65f841:
+    type: FUNCTION
+    name: goToAuth
     properties:
-      minHeight: 1136px
-      padding: 16px
-      spacing: 16px
-      headerProps: {}
-      leftSidebarProps: {}
-      rightSidebarProps: {}
-      footerProps: {}
-  7c1c6e37-aebb-4028-8474-23cdba65a54a:
-    type: TEXT
-    name: text3
+      action:
+        path: /auth
+        target: _self
+        targetNode:
+          ref: com.dynaboard.globals:browser
+        actionType: NAVIGATE_TO_PAGE
+  8aef507a-f6bf-424c-9aa2-d33ca4c0ff8e:
+    type: COMPONENT
+    name: Header
+    slots:
+      canvas:
+        - nodeID: 4d0a2a03-fa78-4089-9969-13ef392739e7
+          orderKey: Zy
+        - nodeID: 7308312e-3cb3-4cf8-beb9-dae9de05909c
+          orderKey: ZyV
+      functions:
+        - nodeID: fc447b1c-99fe-4710-ad1b-2fa8143155a4
+          orderKey: a0
+        - nodeID: 8a81b7fd-0b85-41f7-b5e3-5491cd65f841
+          orderKey: a1
+    properties:
+      minHeight: 70px
+      height: 110px
+      maxHeight: 110px
+      width: 960px
+      layoutStyle: VERTICAL_STACK
+      gridRowGap: '0'
+      gridColumnGap: '0'
+      padding: ''
+      overflow: visible
+      spacing: '0'
+      styles: |-
+        element.styles {
+        }
+      props:
+        - id: 32f8b83e-2480-40e5-a79c-9ff2b005cdfb
+          key: subheading
+          displayName: ''
+          description: Optional. A subheading to display on your page.
+          propType: string
+          defaultValue: '{{$currentPage?.title ?? "Subheading"}}'
+        - id: ab892de0-fa8d-47f7-9631-6cfdf531635e
+          key: logoImageURL
+          displayName: Logo Image URL
+          description: URL for your application's logo
+          propType: string
+          defaultValue: https://storage.googleapis.com/dynaboard-demo/dynafin_white.svg
+        - id: 1f324d01-95c5-4cef-bba2-26c6810c60cf
+          key: displayLogo
+          description: ''
+          propType: boolean
+          defaultValue: true
+        - id: 2939b57a-2bfb-4d9d-b6ab-68f131a0f1a5
+          key: appTitle
+          description: ''
+          propType: string
+          defaultValue: Dynafin
+  8bc54c85-88b2-40d6-adf4-0e903172ea0d:
+    type: CONTAINER
+    name: infoContainer
+    slots:
+      canvas:
+        - nodeID: 4a420057-15ea-4f5c-9952-b016ad65f0b8
+          orderKey: a0
+        - nodeID: 8fdff263-fef8-4d89-9f45-7e54775b844d
+          orderKey: a1
+    properties:
+      top: '0'
+      left: '0'
+      width: 80%
+      height: 100%
+      overflow: hidden
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: VERTICAL_STACK
+      padding: '0'
+      spacing: '2'
+      backgroundColor: transparent
+      boxShadow: '0'
+      distributeContent: center
+      alignContent: end
+  8c8a41ba-f56c-42ca-a41f-a87c5fa019b4:
+    type: CONTAINER
+    name: headerContainer
+    slots:
+      canvas:
+        - nodeID: a946448f-22a4-42da-9866-56fd5ab793cb
+          orderKey: a0
     properties:
       isVisible: '{{true}}'
       isEnabled: '{{true}}'
-      top: '11'
-      width: '12'
-      height: '2'
-      value: 🌐 REST Data Source
-      renderMode: link
-      href: /restDataSource
-      textDecorationLine: underline
-  7c64b908-4d0c-4c7d-a1d7-cab53b47e875:
+      width: 100%
+      height: ''
+      overflow: visible
+      layoutStyle: >-
+        {{$app.viewportWidth < $breakpoint.Tablet ? 'VERTICAL_STACK' :
+        'HORIZONTAL_STACK'}}
+      padding: '0'
+      spacing: 4px
+      backgroundColor: transparent
+      boxShadow: '0'
+      alignContent: center
+      minHeight: 32px
+      maxHeight: auto
+  8fdff263-fef8-4d89-9f45-7e54775b844d:
+    type: TEXT
+    name: emailText
+    properties:
+      top: NaN
+      left: NaN
+      width: auto
+      height: auto
+      styles: |-
+        element.styles {
+        }
+      value: '{{$props.email}}'
+      textAlign: right
+      fontWeight: bold
+      color: '#FFFFFF'
+  923a3c08-e812-411b-ac35-0a977a0b9c10:
+    type: CONTAINER
+    name: headerContainer
+    slots:
+      canvas:
+        - nodeID: ce6b2f2a-191b-4c8d-97e7-b13c7c058a72
+          orderKey: a0
+    properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
+      width: 100%
+      height: ''
+      overflow: visible
+      layoutStyle: >-
+        {{$app.viewportWidth < $breakpoint.Tablet ? 'VERTICAL_STACK' :
+        'HORIZONTAL_STACK'}}
+      padding: '0'
+      spacing: 4px
+      backgroundColor: transparent
+      boxShadow: '0'
+      alignContent: center
+      minHeight: 32px
+      maxHeight: auto
+  928d5671-99e9-4360-9311-01a9986108a4:
+    type: FUNCTION
+    name: getUserSession
+    properties:
+      action:
+        targetNode:
+          ref: a79c36cf-56cd-489c-9db7-27fd9e342fff
+        actionType: GET_SESSION
+  956e2167-905c-48b6-a3f2-ab3216c0643f:
+    type: COMPONENT/f0f51e1e-3e3e-4ce5-809f-cc065300c00d
+    name: accountDropdown
+    componentRef: f0f51e1e-3e3e-4ce5-809f-cc065300c00d
+    properties:
+      top: NaN
+      left: NaN
+      width: 250px
+      minWidth: ''
+      maxWidth: 250px
+      height: 100%
+      $props:
+        email: '{{getUserSession.data?.email ?? "(no auth session)"}}'
+        onLogout: |-
+          async () => {
+            await handleMenuLogout()
+            await goToAuth()
+          }
+  97bc2f67-6d3a-472e-be02-5b58d8412365:
+    type: FUNCTION
+    name: onSignIn
+    properties:
+      action:
+        code: |-
+          await getUserSession()
+          await goToOverview()
+        targetNode:
+          ref: com.dynaboard.globals:tsclient
+        actionType: CALL_CLIENT_FUNCTION
+  99b33bc2-f82f-4282-8ad8-0028258ba145:
+    type: COMPONENT/7e108c21-67f5-4ca1-b87e-8dd6eee9d338
+    name: transactionsCard
+    componentRef: 7e108c21-67f5-4ca1-b87e-8dd6eee9d338
+    properties:
+      left: '7'
+      width: '1'
+      minWidth: 120px
+      maxWidth: 320px
+      height: 120px
+      minHeight: ''
+      maxHeight: 320px
+      $props:
+        titleText: Transactions (REST API)
+        descriptionText: See customer transactions loaded from a REST API here. It's great!
+        linkTo: /transactions
+  99e70e77-457d-4376-949b-441326bd5a2f:
+    type: MEDIA
+    name: logo1
+    properties:
+      top: NaN
+      left: NaN
+      width: 100%
+      height: 100%
+      styles: |-
+        element.styles {
+        }
+      objectFit: contain
+      url: '{{$props.logoImageURL}}'
+  9e187f61-50e3-45ac-9faf-747e7b50b480:
+    type: CONTAINER
+    name: contentContainer
+    slots:
+      canvas:
+        - nodeID: 8bc54c85-88b2-40d6-adf4-0e903172ea0d
+          orderKey: a0
+        - nodeID: 19360818-675a-45fc-9c46-17fc31d397ed
+          orderKey: a1
+    properties:
+      top: NaN
+      left: NaN
+      width: 100%
+      height: 100%
+      overflow: hidden
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      backgroundColor: transparent
+      boxShadow: '0'
+      distributeContent: end
+      alignContent: center
+  9e73c9e9-8d9a-463b-9781-8cf2cf318141:
+    type: CONTAINER
+    name: informationContainer
+    slots:
+      canvas:
+        - nodeID: 091aaa7c-0385-45a2-9736-8da497efc069
+          orderKey: a0
+        - nodeID: 8c8a41ba-f56c-42ca-a41f-a87c5fa019b4
+          orderKey: Zz
+    properties:
+      width: 100%
+      height: fit-content
+      overflow: visible
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: VERTICAL_STACK
+      padding: '0'
+      spacing: '0'
+      backgroundColor: transparent
+      boxShadow: '0'
+  9ea4fffb-150f-4b7f-a755-b8a5c14648ba:
+    type: COMPONENT/88d283c8-fc42-4973-9f7e-8728e649eb07
+    name: detailViewInstance
+    componentRef: 88d283c8-fc42-4973-9f7e-8728e649eb07
+    properties:
+      isVisible: '{{sqlDataTable.selectedRow}}'
+      left: '2'
+      width: 100%
+      minWidth: ''
+      maxWidth: ''
+      height: 100%
+      minHeight: ''
+      maxHeight: ''
+      $props:
+        row: '{{sqlDataTable.selectedRow}}'
+  9ed142bd-510b-4a23-90dd-77a50a66b44c:
+    type: PAGE
+    name: customers
+    slots:
+      canvas:
+        - nodeID: f310e3b1-3b00-4a59-8ef2-c8b8a4f9e227
+          orderKey: a0
+      functions:
+        - nodeID: 13b92f6f-0efa-459d-a246-81ba62df051f
+          orderKey: a0
+        - nodeID: 2f5b818c-fa8e-4a19-84e1-327fdefa5b9d
+          orderKey: Zz
+        - nodeID: aaa5aeb6-99ab-4133-ac91-452d0c1330ac
+          orderKey: Zy
+    properties:
+      title: Customers
+      backgroundColor: background.page
+      layoutStyle: VERTICAL_STACK
+      styles: |-
+        element.styles {
+        }
+      headerComponent: COMPONENT/8aef507a-f6bf-424c-9aa2-d33ca4c0ff8e
+      footerComponent: COMPONENT/a1345906-85b3-4110-bf23-12ca7b32231b
+      headerProps:
+        logoImageURL: https://storage.googleapis.com/dynaboard-demo/dynafin_white.svg
+        displayLogo: true
+        subheading: ''
+  9f1af2f3-f678-463a-9e8a-1b6fb1497a0a:
     type: FUNCTION
     name: getSQLOrders
     properties:
@@ -523,11 +1841,150 @@ nodes:
           WHERE
             user_id = {{ $props.row.id }}
         targetNode:
-          ref: d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8
+          ref: 383d020c-48e5-4781-900e-ac99c8cff641
         actionType: PERFORM_QUERY
       callingSemantics: REACTIVE
       runOnPageLoad: true
-  855f92f6-17f0-435a-9f81-ac3a7da5de95:
+  9f3e2de8-9fde-4a47-9e67-0cea4f315e28:
+    type: CONTAINER
+    name: cardsContainer
+    slots:
+      canvas:
+        - nodeID: c58d7879-6252-447e-8581-9b4d59c6eb0b
+          orderKey: a0
+        - nodeID: 99b33bc2-f82f-4282-8ad8-0028258ba145
+          orderKey: Zz
+    properties:
+      top: NaN
+      left: NaN
+      width: 100%
+      height: auto
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      backgroundColor: transparent
+      boxShadow: '0'
+      distributeContent: center
+      alignContent: center
+      wrapContent: wrap
+  a1345906-85b3-4110-bf23-12ca7b32231b:
+    type: COMPONENT
+    name: Footer
+    slots:
+      canvas:
+        - nodeID: fb8ea17f-778c-4fd8-906b-1995eff26748
+          orderKey: a1
+    properties:
+      height: 78px
+      width: 652px
+      styles: |-
+        element.styles {
+        }
+      props:
+        - id: ed4e5169-f811-4992-ba41-58cdb4fb2991
+          key: copyrightStartYear
+          description: ''
+          propType: number
+          defaultValue: '{{new Date().getFullYear()}}'
+        - id: 9ed9c725-6458-4bf1-b915-385938d3648d
+          key: copyrightEndYear
+          description: ''
+          propType: number
+          defaultValue: '{{new Date().getFullYear()}}'
+        - id: 0ef1a3d8-58c6-41ab-a70a-09972c81dd4f
+          key: linkVisible
+          description: ''
+          propType: boolean
+          defaultValue: true
+        - id: 066b9085-a25f-4e1e-be71-fdf537c1887a
+          key: linkText
+          description: ''
+          propType: string
+          defaultValue: Privacy & Terms
+        - id: 19757eec-f5f4-478d-9f55-f0dac88c9838
+          key: linkHref
+          description: ''
+          propType: string
+          defaultValue: https://dynaboard.com/docs/legal/privacy-policy
+  a4bf3647-9b5d-412d-841f-bb96006ad50c:
+    type: CONTAINER
+    name: menuContainer
+    slots:
+      canvas:
+        - nodeID: 4ee2f59e-8df7-46c6-8a02-bbcd46633eff
+          orderKey: a0
+    properties:
+      isVisible: '{{isMenuOpen.value}}'
+      top: NaN
+      left: NaN
+      width: 224px
+      minWidth: 224px
+      maxWidth: 224px
+      height: 42px
+      minHeight: 42px
+      maxHeight: 42px
+      styles: |-
+        element.styles {
+          position: relative;
+          z-index: 1;
+          top: -12px;
+          right: 0;
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '8'
+  a6c45f73-720e-413b-8877-ea9c7d2ffc30:
+    type: COMPONENT/4df304d9-2963-4811-bf89-3044142d0bd3
+    name: bannerAnnounce
+    componentRef: 4df304d9-2963-4811-bf89-3044142d0bd3
+    properties:
+      top: NaN
+      left: NaN
+      width: 100%
+      height: ''
+      minHeight: 36px
+      maxHeight: auto
+      $props:
+        message: >-
+          This page shows how to wire up a data table to a search bar and detail
+          view backed by paginated SQL.
+  a79c36cf-56cd-489c-9db7-27fd9e342fff:
+    type: RESOURCE/USER_SESSION
+    name: UserSession
+  a946448f-22a4-42da-9866-56fd5ab793cb:
+    type: TEXT
+    name: title
+    properties:
+      width: 100%
+      height: 100%
+      widthMode: FIXED
+      heightMode: FIXED
+      value: Overview
+      fontSize: '{{$app.viewportWidth < 360 ? ''2xl'' : ''3xl''}}'
+      fontWeight: bold
+      color: brand.page.text
+  a9d77715-36db-420a-a064-9abec5075074:
+    type: INPUT
+    name: sqlSearchInput
+    properties:
+      isVisible: '{{true}}'
+      isEnabled: '{{true}}'
+      top: '11'
+      width: 100%
+      height: 48px
+      label: Search
+      labelStyle: top
+      placeholder: First Last or email@domain.com
+      isRequired: '{{false}}'
+      isClearable: '{{false}}'
+      accessoryLeft: icon
+      accessoryLeftIcon: MagnifyingGlassIcon
+      styles: |-
+        element.styles {
+        }
+      accessoryLeftColor: brand.page.text
+  aaa5aeb6-99ab-4133-ac91-452d0c1330ac:
     type: FUNCTION
     name: refreshOnConfigChange
     properties:
@@ -551,193 +2008,472 @@ nodes:
 
           await getSQLDataRows()
         targetNode:
-          ref: 6f7f2240-d34c-4a18-97e5-e19487a2e00a
+          ref: com.dynaboard.globals:tsclient
         actionType: CALL_CLIENT_FUNCTION
       callingSemantics: REACTIVE
       runOnPageLoad: '{{false}}'
-  8a072561-f061-4ccd-996e-f3d04cd7ba75:
+  ab025d06-afa9-479e-b704-54ea51008448:
     type: CONTAINER
-    name: detailViewContainer
+    name: pageContainer
     slots:
       canvas:
-        - nodeID: ea85635e-c0f4-4f3d-b5bd-e9395ff8c2e1
-          orderKey: a0
-        - nodeID: ca83c45b-be82-4da0-a23b-5f499ffd5f9b
-          orderKey: a1
-        - nodeID: 54787690-0286-4edd-813a-6066a08de86a
+        - nodeID: 36a2572f-31e5-4321-b2e8-545641828287
+          orderKey: Zz
+        - nodeID: 9e73c9e9-8d9a-463b-9781-8cf2cf318141
           orderKey: Zy
+        - nodeID: 9f3e2de8-9fde-4a47-9e67-0cea4f315e28
+          orderKey: a0
     properties:
-      isVisible: '{{true}}'
-      isEnabled: '{{true}}'
-      top: '44'
-      width: '12'
-      height: '32'
+      top: '8'
+      left: '3'
+      width: 100%
+      minWidth: auto
+      maxWidth: 960px
+      height: ''
       styles: |-
         element.styles {
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          border: 1px solid {{$app.colorMode === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)'}};
         }
-      backgroundColor: surface.100
-      borderRadius: 6px
-  8b6d065d-3d6a-4bcd-9a54-322a3e8fe831:
+      layoutStyle: VERTICAL_STACK
+      spacing: '18'
+      backgroundColor: background.content
+      boxShadow: '0'
+      borderRadius: 10px
+  b2af889d-a613-44b6-b18d-fc422bc75b1d:
     type: TEXT
-    name: emailText
+    name: icon
     properties:
-      isVisible: '{{true}}'
-      isEnabled: '{{true}}'
-      top: '2'
-      width: '12'
-      height: '1'
-      value: '{{$props.row.email}}'
-      showExternalIndicator: '{{false}}'
-  8f30b6e6-9972-4379-9215-bceb5c7ff629:
-    type: FUNCTION
-    name: getRandomData
-    properties:
-      action:
-        targetNode:
-          ref: 37976c4c-068a-47f4-a607-3d0cbf983b72
-        actionType: PERFORM_REQUEST
-        path: /api/finance?size=25
-        method: GET
-        headers: []
-      runOnPageLoad: '{{true}}'
-      onSuccess: ''
-      onFailure: ''
-  8fe781e4-05c1-41f5-be91-c1111ca4bcc7:
-    type: TEXT
-    name: text2
-    properties:
-      isVisible: '{{true}}'
-      isEnabled: '{{true}}'
-      top: '9'
-      width: '12'
-      height: '2'
-      value: 📊 SQL Data Source
-      renderMode: link
-      href: /sqlDataSource
-      textDecorationLine: underline
-  900e27e4-3317-432b-b5ea-18c0c69c0a80:
-    type: PAGE
-    name: restDataSource
+      top: NaN
+      left: NaN
+      width: 100%
+      height: 100%
+      styles: |-
+        element.styles {
+        }
+      value: 💡
+      fontSize: sm
+      lineHeight: '1.4'
+      textAlign: center
+  b74a9643-5ba3-4dd1-92eb-7006cb936ef4:
+    type: CONTAINER
+    name: logoContainer
     slots:
       canvas:
-        - nodeID: c8137b42-c56c-423a-9b7f-a785b043549a
-          orderKey: a3
-        - nodeID: eeb3347f-de4d-4781-8a1f-f976ebced42c
-          orderKey: a4
-        - nodeID: 1aeeba95-af76-495c-8fa9-fb43bfd7da23
-          orderKey: a5
-        - nodeID: 57e18596-bbb7-4443-acf0-d07cd636b087
-          orderKey: a6
-        - nodeID: 1e2ad524-7b53-4f31-8b05-675853620f89
+        - nodeID: 1a502f60-bf94-4610-8c57-e128f876ccd0
+          orderKey: a1
+        - nodeID: 0e7c21e1-2712-40bb-b1b3-04913e319cd8
           orderKey: a2
-      functions:
-        - nodeID: 8f30b6e6-9972-4379-9215-bceb5c7ff629
-          orderKey: a2
-        - nodeID: 5ca770d5-dbe9-44e6-8c29-740589c0c85f
-          orderKey: a3
-        - nodeID: f1f385a4-3853-45e3-bc51-58ba7220c27a
-          orderKey: a4
     properties:
-      minHeight: 1136px
-      padding: 16px
-      spacing: 16px
-      gridRowHeight: 16px
-      headerProps: {}
-      leftSidebarProps: {}
-      rightSidebarProps: {}
-      footerProps: {}
-  964fd0cf-7c23-4b2c-b451-a94b06c89b82:
+      top: NaN
+      left: NaN
+      width: fit-content
+      height: 50px
+      overflow: visible
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: HORIZONTAL_STACK
+      padding: '0'
+      spacing: '8'
+      backgroundColor: transparent
+      boxShadow: '0'
+  b960b623-8d34-4896-9cd6-d75caf8ccb2f:
+    type: RESOURCE/ONE_TIME_PIN_AUTH
+    name: OneTimePinAuth
+  ba7828fd-044d-43a9-ad6d-0c8ed4eef71c:
     type: TEXT
-    name: text2
+    name: subtitle
     properties:
-      isVisible: '{{true}}'
+      top: NaN
+      left: NaN
+      width: 100%
+      height: 100%
+      styles: |-
+        element.styles {
+        }
+      value: >-
+        Look up a transaction, edit transaction details, and approve or reject a
+        transaction.
+      color: brand.page.text
+  c58d7879-6252-447e-8581-9b4d59c6eb0b:
+    type: COMPONENT/7e108c21-67f5-4ca1-b87e-8dd6eee9d338
+    name: customersCard
+    componentRef: 7e108c21-67f5-4ca1-b87e-8dd6eee9d338
+    properties:
+      left: '2'
+      width: '1'
+      minWidth: 120px
+      maxWidth: 360px
+      height: 120px
+      minHeight: ''
+      maxHeight: 320px
+      $props:
+        titleText: Customers (PostgreSQL)
+        descriptionText: >-
+          View a list of your customers populated from a SQL database. All the
+          customers!
+        linkTo: /customers
+        emoji: 👥
+  cc2d758d-70d2-47cf-a60e-8223529e8bb1:
+    type: TEXT
+    name: emojiIcon
+    properties:
+      top: NaN
+      left: NaN
+      width: 78px
+      height: 106px
+      styles: |-
+        element.styles {
+        }
+      value: '{{$props.emoji}}'
+      fontSize: 64px
+      textAlign: center
+  ce6b2f2a-191b-4c8d-97e7-b13c7c058a72:
+    type: TEXT
+    name: title
+    properties:
+      width: 100%
+      height: 100%
+      widthMode: FIXED
+      heightMode: FIXED
+      value: Active Transactions
+      fontSize: '{{$app.viewportWidth < 360 ? ''2xl'' : ''3xl''}}'
+      fontWeight: bold
+      color: brand.page.text
+  d0516475-3f42-43b9-b1f2-f1c9b5629903:
+    type: SIGN-IN
+    name: signInComponent
+    properties:
+      height: '17'
       isEnabled: '{{true}}'
-      left: '3'
-      width: fill
-      height: fill
-      value: '{{$props.text}}'
+      isVisible: '{{true}}'
+      onSuccess:
+        function:
+          ref: 97bc2f67-6d3a-472e-be02-5b58d8412365
+      top: '12'
+      width: '12'
+      shouldRedirect: false
+      styles: |-
+        element.styles {
+          justify-content: flex-start;
+
+          svg {
+            display: none;
+          }
+        }
+
+        .chakra-text {
+          width: 100%;
+          text-align: left;
+        }
+      backgroundColor: background.levelTwo
+  d3204e7b-6647-4262-98e9-67a8f8eaa4bf:
+    type: TEXT
+    name: signInTitle
+    properties:
+      fontSize: 2xl
+      fontWeight: '700'
+      height: '2'
+      isEnabled: '{{true}}'
+      isVisible: '{{true}}'
       showExternalIndicator: '{{false}}'
-  99314925-ad48-46d6-9b5d-fd8db6c6d44e:
+      styles: |-
+        element.styles {
+        }
+      top: '7'
+      value: Sign in
+      width: '12'
+  d41f1985-9b7f-4110-9dde-209051a62c39:
+    type: FUNCTION
+    name: performLogout
+    properties:
+      action:
+        code: await $props.onLogout?.()
+        targetNode:
+          ref: com.dynaboard.globals:tsclient
+        actionType: CALL_CLIENT_FUNCTION
+  d893f200-5595-4656-a6b1-d1347bdcacf2:
+    type: COMPONENT/4df304d9-2963-4811-bf89-3044142d0bd3
+    name: bannerAnnounce
+    componentRef: 4df304d9-2963-4811-bf89-3044142d0bd3
+    properties:
+      top: NaN
+      left: NaN
+      width: 100%
+      height: ''
+      minHeight: 36px
+      maxHeight: auto
+      $props:
+        message: >-
+          This page shows how to wire up a REST API to a data table and perform
+          client-side filters.
+  dd37b811-b351-4b00-ac2c-642407c05db7:
+    type: FUNCTION
+    name: readmeLink
+    properties:
+      action:
+        path: ''
+        target: _self
+        targetNode:
+          ref: com.dynaboard.globals:browser
+        actionType: NAVIGATE_TO_PAGE
+      isEnabled: '{{true}}'
+      loading: '{{false}}'
+      runOnPageLoad: '{{false}}'
+  de7e3b0e-ad34-4a02-86ac-bc5c50dcaf80:
+    type: FUNCTION
+    name: closeMenu
+    properties:
+      action:
+        code: isMenuOpen.value = false
+        targetNode:
+          ref: com.dynaboard.globals:tsclient
+        actionType: CALL_CLIENT_FUNCTION
+  dfdbb1dc-9b10-41ea-b9f2-bfcf1da840b2:
+    type: PAGE
+    name: auth
+    slots:
+      canvas:
+        - nodeID: 88cec4ab-afc2-4e51-b63e-0387727e9862
+          orderKey: Zz
+      functions:
+        - nodeID: dd37b811-b351-4b00-ac2c-642407c05db7
+          orderKey: a0
+        - nodeID: 97bc2f67-6d3a-472e-be02-5b58d8412365
+          orderKey: a1
+        - nodeID: 7a3ad36c-b4ff-43fa-a65f-e741050af891
+          orderKey: a2
+    properties:
+      headerComponent: COMPONENT/01dada5c-22f0-4b2d-8e80-efb275a3bc18
+      footerComponent: COMPONENT/a1345906-85b3-4110-bf23-12ca7b32231b
+      authorizationRules: |-
+        [
+          {
+            if: {
+              $and: [
+                {
+                  'session/user': {
+                    $exists: true,
+                  },
+                },
+              ],
+            },
+            then: {
+              allow: false,
+              statusCode: 302,
+              redirectTo: '/',
+            },
+          },
+          {
+            if: {
+              $and: [
+                {
+                  'session/user': {
+                    $exists: false,
+                  },
+                },
+              ],
+            },
+            then: {
+              allow: true,
+            },
+          },
+        ]
+      layoutStyle: VERTICAL_STACK
+      route: /auth
+      backgroundColor: '{{$app.colorMode === ''dark'' ? ''background.page'' : ''#FFF''}}'
+      alignContent: center
+      maxWidth: 480px
+  e2600868-dcd0-4f60-ae4f-bb29d4c1345c:
+    type: NAVBAR
+    name: nav
+    properties:
+      top: NaN
+      left: NaN
+      width: '1'
+      minWidth: 320px
+      maxWidth: none
+      height: 42px
+      minHeight: none
+      maxHeight: none
+      styles: |-
+        element.styles {
+        }
+      component: COMPONENT/com.dynaboard.navbars:b6608d91-ad2c-4689-9cfc-508ec3f946b0
+      itemWidth: fit-content
+  f0f51e1e-3e3e-4ce5-809f-cc065300c00d:
+    type: COMPONENT
+    name: AccountDropdown
+    slots:
+      canvas:
+        - nodeID: 9e187f61-50e3-45ac-9faf-747e7b50b480
+          orderKey: Zz
+        - nodeID: a4bf3647-9b5d-412d-841f-bb96006ad50c
+          orderKey: a0
+      functions:
+        - nodeID: 29c97ffe-82d5-406f-a59a-b6a1acf157c6
+          orderKey: a0
+        - nodeID: de7e3b0e-ad34-4a02-86ac-bc5c50dcaf80
+          orderKey: a1
+        - nodeID: 4381f8d8-b3c5-4c26-8022-b363101860a3
+          orderKey: a2
+        - nodeID: d41f1985-9b7f-4110-9dde-209051a62c39
+          orderKey: a3
+        - nodeID: 7b626ec5-d34d-4c1d-8bfd-2b669c4b090d
+          orderKey: a4
+      variables:
+        - nodeID: 26c27d33-a62d-4525-b852-548262437ce4
+          orderKey: a0
+    properties:
+      height: 50px
+      width: 300px
+      layoutStyle: VERTICAL_STACK
+      alignContent: end
+      overflow: visible
+      spacing: '6'
+      styles: |-
+        element.styles {
+        }
+      props:
+        - id: 64b70983-d278-4c40-b468-2a5896288125
+          key: email
+          description: The email address of the currently signed-in user
+          propType: string
+          defaultValue: dave@dynafin.com
+        - id: 15e72124-1fa2-472b-b3b8-28e28913109c
+          key: onLogout
+          description: A function to trigger when the user requests to logout
+          propType: closure
+          defaultValue: |-
+            () => {
+              console.log('Replace me with a function prop!')
+            }
+  f124b430-a852-4776-abce-6502ac5f6dbd:
+    type: TEXT
+    name: title
+    properties:
+      width: 100%
+      height: 100%
+      widthMode: FIXED
+      heightMode: FIXED
+      value: Customer Accounts
+      fontSize: '{{$app.viewportWidth < 360 ? ''2xl'' : ''3xl''}}'
+      fontWeight: bold
+      color: brand.page.text
+  f310e3b1-3b00-4a59-8ef2-c8b8a4f9e227:
+    type: CONTAINER
+    name: pageContainer
+    slots:
+      canvas:
+        - nodeID: fd7326a2-8394-4dce-bb96-de61cdab27eb
+          orderKey: a5
+        - nodeID: 4a91bc7a-b748-4028-8ccb-34d9da414dfa
+          orderKey: Zz
+        - nodeID: 217b627f-5cd4-450d-962e-469278f4c6f9
+          orderKey: a4
+        - nodeID: 624e28dd-b391-4800-8881-cfde68c43a44
+          orderKey: a6
+        - nodeID: a6c45f73-720e-413b-8877-ea9c7d2ffc30
+          orderKey: a0
+    properties:
+      top: '8'
+      left: '3'
+      width: 100%
+      minWidth: auto
+      maxWidth: 960px
+      height: auto
+      overflow: visible
+      styles: |-
+        element.styles {
+          border: 1px solid {{$app.colorMode === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)'}};
+        }
+      layoutStyle: VERTICAL_STACK
+      spacing: '18'
+      backgroundColor: background.content
+      boxShadow: '0'
+      borderRadius: 10px
+  f42f6de3-30aa-46a7-9863-0cf32ce02688:
+    type: TEXT
+    name: termsText
+    properties:
+      isVisible: '{{$props.linkVisible}}'
+      top: NaN
+      left: NaN
+      width: fit-content
+      height: 100%
+      styles: |-
+        element.styles {
+        }
+      value: '{{$props.linkText}}'
+      renderMode: link
+      href: '{{$props.linkHref}}'
+      textDecorationLine: underline
+      color: text.accent
+  f975daa8-70b9-46d5-97d7-4c396c5be1de:
     type: PAGE
     name: index
     slots:
       canvas:
-        - nodeID: 68c6de3c-56c6-40bc-a8d4-e9ecb364cff9
+        - nodeID: ab025d06-afa9-479e-b704-54ea51008448
           orderKey: a0
-        - nodeID: 8fe781e4-05c1-41f5-be91-c1111ca4bcc7
-          orderKey: Zz
-        - nodeID: bd2c2dda-f115-420b-bd7f-d5d8b32f174d
-          orderKey: Zy
-        - nodeID: 7c1c6e37-aebb-4028-8474-23cdba65a54a
-          orderKey: ZyV
     properties:
-      includeInSitemap: '{{true}}'
-      leftSidebarOpen: '{{true}}'
-      rightSidebarOpen: '{{true}}'
-  bd2c2dda-f115-420b-bd7f-d5d8b32f174d:
-    type: TEXT
-    name: title
-    properties:
-      width: '6'
-      height: '5'
-      widthMode: FIXED
-      heightMode: FIXED
-      value: Customer Accounts
-      fontSize: 3xl
-      fontWeight: bold
-  c7f13cff-f1a8-4ce1-b1ff-1c94f0aa3b45:
+      title: Overview
+      headerComponent: COMPONENT/8aef507a-f6bf-424c-9aa2-d33ca4c0ff8e
+      headerProps:
+        displayLogo: true
+        subheading: ''
+        logoImageURL: https://storage.googleapis.com/dynaboard-demo/dynafin_white.svg
+      layoutStyle: VERTICAL_STACK
+      backgroundColor: background.page
+      footerComponent: COMPONENT/a1345906-85b3-4110-bf23-12ca7b32231b
+  fb8ea17f-778c-4fd8-906b-1995eff26748:
     type: CONTAINER
-    name: headerContainer
+    name: footerContainer
     slots:
       canvas:
-        - nodeID: e849b2a7-4d1a-46ca-9226-e63180974cc2
+        - nodeID: 813de092-3825-470c-8aaa-52648c8d9794
           orderKey: a0
-        - nodeID: ce6b3326-5554-4174-a764-00408bc1be30
-          orderKey: Zz
+        - nodeID: f42f6de3-30aa-46a7-9863-0cf32ce02688
+          orderKey: a1
+        - nodeID: fe0154f1-94b1-47d9-a474-5f6eaa2e9701
+          orderKey: a0V
     properties:
-      isVisible: '{{true}}'
-      isEnabled: '{{true}}'
+      top: '0'
+      left: '0'
       width: '12'
-      height: '5'
-      overflow: visible
-      layoutStyle: >-
-        {{$app.viewportWidth < $breakpoint.Tablet ? 'VERTICAL_STACK' :
-        'HORIZONTAL_STACK'}}
-      padding: '0'
-      spacing: 4px
-      backgroundColor: transparent
-      boxShadow: '0'
+      height: '16'
+      styles: |-
+        element.styles {
+        }
+      layoutStyle: HORIZONTAL_STACK
+      backgroundColor: none
+      distributeContent: center
       alignContent: center
-  c8137b42-c56c-423a-9b7f-a785b043549a:
-    type: TEXT
-    name: title
+  fc447b1c-99fe-4710-ad1b-2fa8143155a4:
+    type: FUNCTION
+    name: handleMenuLogout
     properties:
-      width: '6'
-      height: '5'
-      widthMode: FIXED
-      heightMode: FIXED
-      value: Customer Accounts (REST)
-      fontSize: 3xl
-      fontWeight: bold
-  ca83c45b-be82-4da0-a23b-5f499ffd5f9b:
+      action:
+        redirectTo: ''
+        targetNode:
+          ref: a79c36cf-56cd-489c-9db7-27fd9e342fff
+        actionType: SIGN_OUT
+  fe0154f1-94b1-47d9-a474-5f6eaa2e9701:
     type: TEXT
-    name: emptyText
+    name: separator
     properties:
-      isVisible: '{{!sqlDataTable.selectedRow}}'
-      isEnabled: '{{true}}'
-      width: '12'
-      height: '13'
-      value: |-
-        Select a user
-        to view details.
-      showExternalIndicator: '{{false}}'
+      isVisible: '{{$props.linkVisible}}'
+      top: NaN
+      left: NaN
+      width: fit-content
+      height: 100%
+      styles: |-
+        element.styles {
+        }
+      value: •
       textAlign: center
-      fontWeight: bold
-  cae67f4f-0513-4459-b608-f5c27091eaac:
-    type: RESOURCE/BROWSER
-    name: browser
-  caeceb6e-7698-4d52-bb39-c96d1cf87679:
+      color: text.muted
+  fea52d69-d63b-4822-b571-c4777fcc9b9b:
     type: TEXT
     name: ordersTitle
     properties:
@@ -749,155 +2485,4 @@ nodes:
       value: Orders
       showExternalIndicator: '{{false}}'
       fontStyle: italic
-  ce6b3326-5554-4174-a764-00408bc1be30:
-    type: TEXT
-    name: title
-    properties:
-      width: fill
-      height: fill
-      widthMode: FIXED
-      heightMode: FIXED
-      value: Customer Accounts (SQL)
-      fontSize: 3xl
-      fontWeight: bold
-  d4d4a1a6-d921-4a4c-947e-a40cfeb1e4d8:
-    type: RESOURCE/POSTGRES
-    name: postgresReadOnly
-    properties:
-      profiles:
-        - host: 34.69.26.232
-          port: '5432'
-          database: postgres
-          username: readonly
-          password:
-            ref: 6f0f802f-0ebd-4e8c-b42f-657ea4a9e0dc
-          useSSL: '{{true}}'
-          sslMode: required
-          environment: ''
-  d777f0fc-dc94-4711-83a2-dd730d1e35b8:
-    type: TEXT
-    name: userText
-    properties:
-      isVisible: '{{true}}'
-      isEnabled: '{{true}}'
-      width: '12'
-      height: '1'
-      value: '{{$props.row.name}}'
-      showExternalIndicator: '{{false}}'
-      fontWeight: bold
-  e849b2a7-4d1a-46ca-9226-e63180974cc2:
-    type: COMPONENT/f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
-    name: notice
-    componentRef: f1c60bc1-1ac8-41cd-b7e0-0385bafc4464
-    properties:
-      isVisible: '{{true}}'
-      left: '7'
-      width: fill
-      height: fill
-      $props:
-        text: >-
-          This page shows how to wire up a data table to a search bar and detail
-          view backed by paginated SQL.
-  ea85635e-c0f4-4f3d-b5bd-e9395ff8c2e1:
-    type: COMPONENT/fe14b182-bf58-458a-b8c0-b094e5104311
-    name: detailViewInstance
-    componentRef: fe14b182-bf58-458a-b8c0-b094e5104311
-    properties:
-      isVisible: '{{sqlDataTable.selectedRow}}'
-      width: '12'
-      height: '13'
-      $props:
-        row: sqlDataTable.selectedRow
-  eeb3347f-de4d-4781-8a1f-f976ebced42c:
-    type: INPUT
-    name: searchInput
-    properties:
-      top: '7'
-      width: '9'
-      height: '4'
-      placeholder: Search for an Account ID or Account Name here...
-      label: Search
-      labelStyle: top
-      accessoryLeft: icon
-      accessoryLeftIcon: MagnifyingGlassIcon
-  f0dda8ec-f722-43ee-9c5b-43ffab2b5a75:
-    type: CONTAINER
-    name: container1
-    slots:
-      canvas:
-        - nodeID: 23667ad4-e8ea-44a7-9e65-a8ded3733981
-          orderKey: Zy
-        - nodeID: 964fd0cf-7c23-4b2c-b451-a94b06c89b82
-          orderKey: Zz
-    properties:
-      isVisible: '{{true}}'
-      isEnabled: '{{true}}'
-      width: '12'
-      height: '16'
-      layoutStyle: HORIZONTAL_STACK
-      backgroundColor: background.levelOne
-  f1c60bc1-1ac8-41cd-b7e0-0385bafc4464:
-    type: COMPONENT
-    name: notice
-    slots:
-      canvas:
-        - nodeID: f0dda8ec-f722-43ee-9c5b-43ffab2b5a75
-          orderKey: a0
-    properties:
-      height: 80px
-      width: 592px
-      overflow: visible
-      props:
-        - id: ee769515-6b7d-4ebe-94f6-2f1186f41b70
-          description: ''
-          propType: string
-          key: text
-          defaultValue: This is a notice!
-  f1f385a4-3853-45e3-bc51-58ba7220c27a:
-    type: FUNCTION
-    name: copyToClipboard
-    properties:
-      action:
-        clipboardText: '{{dataTable.selectedRow}}'
-        path: ''
-        target: _self
-        targetNode:
-          ref: cae67f4f-0513-4459-b608-f5c27091eaac
-        actionType: COPY_TO_CLIPBOARD
-  fe14b182-bf58-458a-b8c0-b094e5104311:
-    type: COMPONENT
-    name: detailView
-    slots:
-      canvas:
-        - nodeID: d777f0fc-dc94-4711-83a2-dd730d1e35b8
-          orderKey: Zw
-        - nodeID: 8b6d065d-3d6a-4bcd-9a54-322a3e8fe831
-          orderKey: Zz
-        - nodeID: caeceb6e-7698-4d52-bb39-c96d1cf87679
-          orderKey: ZzV
-        - nodeID: 0fae78ed-3fe1-46b6-833d-3cfdc4bf44dd
-          orderKey: a0
-      functions:
-        - nodeID: 7c64b908-4d0c-4c7d-a1d7-cab53b47e875
-          orderKey: a0
-    properties:
-      height: 466px
-      width: 714px
-      backgroundColor: background.levelOne
-      borderRadius: 6px
-      padding: 12px
-      styles: |-
-        element.styles {
-          border: 1px solid rgba(0, 0, 0, 0.2);
-        }
-      props:
-        - id: ab1cc4c9-c111-4d59-a9cb-4611c17b109e
-          key: row
-          description: Row data
-          propType: closure
-          defaultValue: |-
-            {
-              id: 1,
-              name: "Ada Lovelace",
-              email: "alovelace@example.com",
-            }
+      color: brand.page.text
