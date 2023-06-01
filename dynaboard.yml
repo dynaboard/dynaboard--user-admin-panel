@@ -36,6 +36,10 @@ nodes:
       config:
         - nodeID: 31dd1857-a31b-40d9-823f-ad0b0fdb579d
           orderKey: a0
+        - nodeID: df10f568-4a61-4392-85f8-b266d8f2314d
+          orderKey: a1
+        - nodeID: a04b9797-3c39-4e73-8e45-4379a9a765cc
+          orderKey: a2
       resources:
         - nodeID: b960b623-8d34-4896-9cd6-d75caf8ccb2f
           orderKey: a0
@@ -204,7 +208,7 @@ nodes:
       color: brand.page.text
   0e7c21e1-2712-40bb-b1b3-04913e319cd8:
     type: TEXT
-    name: text1
+    name: logoText
     properties:
       isVisible: '{{!$props.displayLogo}}'
       top: NaN
@@ -214,6 +218,8 @@ nodes:
         element.styles {
         }
       value: '{{$props.appTitle}}'
+      fontSize: 2xl
+      fontWeight: '300'
   10af277a-2607-4d90-9657-6b8bd5350a54:
     type: RESOURCE/HTTP
     name: RandomDataEnpoint
@@ -278,6 +284,7 @@ nodes:
       leftIcon: CaretDownIcon
       textColor: '#111215'
       backgroundColor: '#FFFFFF'
+      variant: solid
   1a502f60-bf94-4610-8c57-e128f876ccd0:
     type: COMPONENT/2c84ef5e-9941-4946-bf69-903d0bd7cc7d
     name: logoWhite
@@ -629,7 +636,7 @@ nodes:
       alignContent: center
   4094b6a7-7f80-40bb-a433-f13ae6076f71:
     type: COMPONENT/2c84ef5e-9941-4946-bf69-903d0bd7cc7d
-    name: logo1
+    name: logo
     componentRef: 2c84ef5e-9941-4946-bf69-903d0bd7cc7d
     properties:
       top: NaN
@@ -638,9 +645,8 @@ nodes:
       height: 100%
       $props:
         logoImageURL: >-
-          {{$app.colorMode === 'dark' ?
-          'https://storage.googleapis.com/dynaboard-demo/dynafin_white.svg' :
-          'https://storage.googleapis.com/dynaboard-demo/dynafin_black.svg'}}
+          {{$app.colorMode === 'dark' ? LOGO_URL_WHITE.value :
+          LOGO_URL_BLACK.value}}
   4381f8d8-b3c5-4c26-8022-b363101860a3:
     type: FUNCTION
     name: toggleMenu
@@ -678,7 +684,7 @@ nodes:
       footerComponent: COMPONENT/a1345906-85b3-4110-bf23-12ca7b32231b
       headerProps:
         subheading: Transactions
-        logoImageURL: https://storage.googleapis.com/dynaboard-demo/dynafin_white.svg
+        logoImageURL: '{{LOGO_URL_WHITE.value}}'
   4a420057-15ea-4f5c-9952-b016ad65f0b8:
     type: TEXT
     name: loggedInText
@@ -749,7 +755,7 @@ nodes:
       layoutStyle: HORIZONTAL_STACK
       padding: '0'
       spacing: '8'
-      backgroundColor: '#05319ECC'
+      backgroundColor: brand.header
       boxShadow: '0'
       borderRadius: '0'
       distributeContent: center
@@ -1109,7 +1115,7 @@ nodes:
         }
       layoutStyle: HORIZONTAL_STACK
       padding: '0'
-      backgroundColor: '#002175DC'
+      backgroundColor: brand.subheading
       borderRadius: '0'
       alignContent: center
   74314dd7-4167-4047-8068-2171c020aa08:
@@ -1135,7 +1141,7 @@ nodes:
       alignContent: center
   75ae06fb-40c7-4d52-adb9-ce3f6724c61b:
     type: TEXT
-    name: text1
+    name: helpText
     properties:
       top: NaN
       left: NaN
@@ -1737,6 +1743,7 @@ nodes:
         }
       objectFit: contain
       url: '{{$props.logoImageURL}}'
+      alt: ''
   9e187f61-50e3-45ac-9faf-747e7b50b480:
     type: CONTAINER
     name: contentContainer
@@ -1821,7 +1828,7 @@ nodes:
       headerComponent: COMPONENT/8aef507a-f6bf-424c-9aa2-d33ca4c0ff8e
       footerComponent: COMPONENT/a1345906-85b3-4110-bf23-12ca7b32231b
       headerProps:
-        logoImageURL: https://storage.googleapis.com/dynaboard-demo/dynafin_white.svg
+        logoImageURL: '{{LOGO_URL_WHITE.value}}'
         displayLogo: true
         subheading: ''
   9f1af2f3-f678-463a-9e8a-1b6fb1497a0a:
@@ -1869,6 +1876,12 @@ nodes:
       distributeContent: center
       alignContent: center
       wrapContent: wrap
+  a04b9797-3c39-4e73-8e45-4379a9a765cc:
+    type: CONFIG
+    name: LOGO_URL_BLACK
+    properties:
+      value: https://storage.googleapis.com/dynaboard-demo/dynafin_black.svg
+      description: The URL for the logo, used primarily in light mode.
   a1345906-85b3-4110-bf23-12ca7b32231b:
     type: COMPONENT
     name: Footer
@@ -2229,6 +2242,12 @@ nodes:
         targetNode:
           ref: com.dynaboard.globals:tsclient
         actionType: CALL_CLIENT_FUNCTION
+  df10f568-4a61-4392-85f8-b266d8f2314d:
+    type: CONFIG
+    name: LOGO_URL_WHITE
+    properties:
+      value: https://storage.googleapis.com/dynaboard-demo/dynafin_white.svg
+      description: The URL for the logo, used primarily in dark mode.
   dfdbb1dc-9b10-41ea-b9f2-bfcf1da840b2:
     type: PAGE
     name: auth
@@ -2422,7 +2441,7 @@ nodes:
       headerProps:
         displayLogo: true
         subheading: ''
-        logoImageURL: https://storage.googleapis.com/dynaboard-demo/dynafin_white.svg
+        logoImageURL: '{{LOGO_URL_WHITE.value}}'
       layoutStyle: VERTICAL_STACK
       backgroundColor: background.page
       footerComponent: COMPONENT/a1345906-85b3-4110-bf23-12ca7b32231b
