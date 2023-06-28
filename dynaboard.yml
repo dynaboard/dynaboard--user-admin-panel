@@ -367,7 +367,7 @@ nodes:
           orderKey: a1
     properties:
       title: Transactions
-      backgroundColor: background.page
+      backgroundColor: ''
       styles: |-
         ::component {
         }
@@ -882,7 +882,7 @@ nodes:
           orderKey: a1
     properties:
       title: Customers
-      backgroundColor: background.page
+      backgroundColor: ''
       styles: |-
         ::component {
         }
@@ -1143,7 +1143,7 @@ nodes:
         ]
       layoutStyle: VERTICAL_STACK
       route: /auth
-      backgroundColor: '{{$app.colorMode === ''dark'' ? ''background.page'' : ''#FFF''}}'
+      backgroundColor: '{{$app.colorMode === ''dark'' ? '''' : ''#FFF''}}'
       alignContent: center
       maxWidth: 480px
   e29c4d12-2ee8-4edb-86d7-e2487aa87440:
@@ -1204,7 +1204,7 @@ nodes:
           orderKey: Zv
     properties:
       title: Overview
-      backgroundColor: background.page
+      backgroundColor: ''
       leftSidebarComponent: COMPONENT/com.dynaboard.leftSidebar:24eddf5b-c774-4d68-98f1-95e1cf084a3f
       icon: HomeIcon
   fea52d69-d63b-4822-b571-c4777fcc9b9b:
