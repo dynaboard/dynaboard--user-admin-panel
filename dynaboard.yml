@@ -1,5 +1,5 @@
 runtimeVersion: 0.4.2
-name: User Admin Panel (copy)
+name: User Admin Panel
 description: ''
 type: com.dynaboard/project
 nodes:
@@ -919,11 +919,7 @@ nodes:
       height: '2'
       widthMode: FIXED
       heightMode: FIXED
-      value: |-
-        Overview
-
-
-        lkjl
+      value: Overview
       fontSize: '{{$app.viewportWidth < 360 ? ''2xl'' : ''3xl''}}'
       fontWeight: bold
   a9d77715-36db-420a-a064-9abec5075074:
@@ -941,24 +937,6 @@ nodes:
       isClearable: '{{false}}'
       accessoryLeft: icon
       accessoryLeftIcon: MagnifyingGlassIcon
-  ac58e70e-6201-4f1d-97f6-736abcc035a5:
-    type: BUTTON
-    name: solidButton1
-    properties:
-      top: '17'
-      left: '2'
-      width: '3'
-      height: '2'
-      variant: outline
-  b5c56983-73d5-4d27-95f6-9184b2a677fa:
-    type: ICON
-    name: icon1
-    properties:
-      top: '17'
-      width: '1'
-      height: '2'
-      value: 🫠
-      alt: An emoji containing melting face.
   b960b623-8d34-4896-9cd6-d75caf8ccb2f:
     type: RESOURCE/ONE_TIME_PIN_AUTH
     name: OneTimePinAuth
@@ -1166,10 +1144,6 @@ nodes:
           orderKey: Zw
         - nodeID: c58d7879-6252-447e-8581-9b4d59c6eb0b
           orderKey: Zv
-        - nodeID: b5c56983-73d5-4d27-95f6-9184b2a677fa
-          orderKey: Zu
-        - nodeID: ac58e70e-6201-4f1d-97f6-736abcc035a5
-          orderKey: Zt
     properties:
       title: Overview
       leftSidebarComponent: COMPONENT/com.dynaboard.leftSidebar:24eddf5b-c774-4d68-98f1-95e1cf084a3f
