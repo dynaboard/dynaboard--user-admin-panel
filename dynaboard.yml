@@ -1,5 +1,5 @@
 runtimeVersion: 0.4.2
-name: DynaFin
+name: User Admin Panel
 description: ''
 type: com.dynaboard/project
 nodes:
@@ -100,10 +100,6 @@ nodes:
       isClearable: '{{false}}'
       accessoryLeft: icon
       accessoryLeftIcon: MagnifyingGlassIcon
-      styles: |-
-        ::component {
-        }
-      accessoryLeftColor: brand.page.text
   06aa111c-a814-4d33-b1a9-efd40b05c668:
     type: TEXT
     name: subtitle
@@ -111,9 +107,6 @@ nodes:
       top: '3'
       width: '12'
       height: '2'
-      styles: |-
-        ::component {
-        }
       value: >-
         View your users, transactions, and internal metrics at a glance. Filter
         and search them in real-time!
@@ -125,9 +118,6 @@ nodes:
       top: '3'
       width: '12'
       height: '2'
-      styles: |-
-        ::component {
-        }
       value: >-
         Look up a customer, edit customer details, view orders for that
         customer, and edit order details.
@@ -147,9 +137,6 @@ nodes:
     name: ccOnlySwitch
     properties:
       height: '3'
-      styles: |-
-        ::component {
-        }
       label: Credit Cards Only
       labelStyle: top
       width: '4'
@@ -367,10 +354,6 @@ nodes:
           orderKey: a1
     properties:
       title: Transactions
-      backgroundColor: ''
-      styles: |-
-        ::component {
-        }
       leftSidebarComponent: COMPONENT/com.dynaboard.leftSidebar:24eddf5b-c774-4d68-98f1-95e1cf084a3f
       icon: BackpackIcon
   4df304d9-2963-4811-bf89-3044142d0bd3:
@@ -876,16 +859,10 @@ nodes:
           orderKey: a0
         - nodeID: 2f5b818c-fa8e-4a19-84e1-327fdefa5b9d
           orderKey: Zz
-        - nodeID: aaa5aeb6-99ab-4133-ac91-452d0c1330ac
-          orderKey: Zy
         - nodeID: e29c4d12-2ee8-4edb-86d7-e2487aa87440
           orderKey: a1
     properties:
       title: Customers
-      backgroundColor: ''
-      styles: |-
-        ::component {
-        }
       leftSidebarComponent: COMPONENT/com.dynaboard.leftSidebar:24eddf5b-c774-4d68-98f1-95e1cf084a3f
       icon: PersonIcon
   9f1af2f3-f678-463a-9e8a-1b6fb1497a0a:
@@ -960,38 +937,6 @@ nodes:
       isClearable: '{{false}}'
       accessoryLeft: icon
       accessoryLeftIcon: MagnifyingGlassIcon
-      styles: |-
-        ::component {
-        }
-      accessoryLeftColor: brand.page.text
-  aaa5aeb6-99ab-4133-ac91-452d0c1330ac:
-    type: FUNCTION
-    name: refreshOnConfigChange
-    properties:
-      isEnabled: '{{true}}'
-      loading: '{{false}}'
-      callingSemantics: REACTIVE
-      runOnPageLoad: '{{false}}'
-      action:
-        code: >-
-          // This function runs automatically when the configuration variable
-          PG_PASSWORD changes as you configure this template. It in turn
-          triggers a refresh of the SQL data.
-
-
-          // listens on PG_PASSWORD
-
-          {{PG_PASSWORD.value}}
-
-
-          // triggers refresh
-
-          await getSQLDataCount()
-
-          await getSQLDataRows()
-        targetNode:
-          ref: com.dynaboard.globals:tsclient
-        actionType: CALL_CLIENT_FUNCTION
   b960b623-8d34-4896-9cd6-d75caf8ccb2f:
     type: RESOURCE/ONE_TIME_PIN_AUTH
     name: OneTimePinAuth
@@ -1002,9 +947,6 @@ nodes:
       top: '3'
       width: '12'
       height: '2'
-      styles: |-
-        ::component {
-        }
       value: >-
         Look up a transaction, edit transaction details, and approve or reject a
         transaction.
@@ -1204,7 +1146,6 @@ nodes:
           orderKey: Zv
     properties:
       title: Overview
-      backgroundColor: ''
       leftSidebarComponent: COMPONENT/com.dynaboard.leftSidebar:24eddf5b-c774-4d68-98f1-95e1cf084a3f
       icon: HomeIcon
   fea52d69-d63b-4822-b571-c4777fcc9b9b:
