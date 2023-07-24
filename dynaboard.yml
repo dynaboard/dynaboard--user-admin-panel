@@ -91,9 +91,9 @@ nodes:
     properties:
       isVisible: '{{true}}'
       isEnabled: '{{true}}'
-      top: '9'
+      top: '8'
       width: '7'
-      height: '3'
+      height: '4'
       label: Search
       placeholder: Search for an Account ID or Account Name here...
       isRequired: '{{false}}'
@@ -136,11 +136,11 @@ nodes:
     type: SWITCH
     name: ccOnlySwitch
     properties:
-      height: '3'
+      height: '4'
       label: Credit Cards Only
       labelStyle: top
       width: '4'
-      top: '9'
+      top: '8'
       left: '9'
   13b92f6f-0efa-459d-a246-81ba62df051f:
     type: FUNCTION
@@ -928,9 +928,9 @@ nodes:
     properties:
       isVisible: '{{true}}'
       isEnabled: '{{true}}'
-      top: '9'
+      top: '8'
       width: '12'
-      height: '3'
+      height: '4'
       label: Search
       placeholder: First Last or email@domain.com
       isRequired: '{{false}}'
